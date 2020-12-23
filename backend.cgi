@@ -3,14 +3,14 @@
 # -----------------------------------------------------------------------------------------
 #																 HOUSEHOLD CHORES BACKEND
 #
-#						created: 			 20/12/2020
-#						last modified: 23/12/2020
-#						by: 				 	 Diogo
+#			created: 			 20/12/2020
+#			last modified: 23/12/2020
+#			by: 				 	 Diogo
 #
-#						Description:	 Flask connects to and queries database at db.tecnico.ulisboa.pt.
-#													 Gets requests from and replies to frontend using REST API.
+#			Description:	 Flask connects to and queries database at db.tecnico.ulisboa.pt.
+#										 Gets requests from and replies to frontend using REST API.
 #						
-#						Frontend frameworks suggestions: React Native, Flutter (both cross platform).
+#			Frontend frameworks suggestions: React Native, Flutter (both cross platform).
 # -----------------------------------------------------------------------------------------
 
 ## Flask libs
@@ -59,12 +59,12 @@ def criarTarefa():
 				return jsonify({"status": "nok"})
 
 		# Prepare query
-		query = ("INSERT INTO tarefa (descricao, criador, dificuldade) VALUES (%s, %s);")
+		query = ("INSERT INTO tarefa (descricao, criador, dificuldade) VALUES (%s, %s, %s);")
 		data = (json["descricao"], json["criador"], json["dificuldade"])
 
 		# Execute and return
 		cursor.execute(query, data)
-		return jsonify({"status": "tarefa criada"})
+		return jsonify({"status": "tarefa criada com sucesso!"})
 
 	except Exception as e:
 		return jsonify({"status": "nok"})
@@ -124,12 +124,12 @@ def listarTarefas():
 				return jsonify({"status": "nok"})
 
 		# Prepare query
-		query = ("SELECT json_agg(*) FROM realiza WHERE filho = %s;")
+		query = ("SELECT json_agg(tarefas) FROM (SELECT * FROM realiza WHERE filho = %s) as tarefas;")
 		data = (json["filho"],)
 
 		# Execute and return
 		cursor.execute(query, data)
-		return jsonify(cursor.fetchall())
+		return jsonify(cursor.fetchone())
 
 	except Exception as e:
 		return jsonify({"status": "nok"})
@@ -161,7 +161,7 @@ def alterarStatusTarefa():
 
 		# Execute and return
 		cursor.execute(query, data)
-		return jsonify({"status": "ok"})
+		return jsonify({"status": "status da tarefa alterado!"})
 
 	except Exception as e:
 		return jsonify({"status": "nok"})
@@ -183,11 +183,11 @@ def listarPontuacao():
 		cursor = dbConn.cursor(cursor_factory=psycopg2.extras.DictCursor)
 
 		# Prepare query
-		query = ("SELECT json_agg(nome, pontuacao) FROM filho ORDER BY pontuacao DESC;")
+		query = ("SELECT json_agg(pontos) FROM (SELECT nome, pontuacao from filho ORDER BY pontuacao DESC) as pontos;")
 
 		# Execute and return
 		cursor.execute(query)
-		return jsonify(cursor.fetchall())
+		return jsonify(cursor.fetchone())
 
 	except Exception as e:
 		return jsonify({"status": "nok"})
