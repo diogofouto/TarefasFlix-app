@@ -59,12 +59,12 @@ def criarTarefa():
 				return jsonify({"status": "nok"})
 
 		# Prepare query
-		query = ("INSERT INTO tarefa (descricao, dificuldade) VALUES (%s, %s);")
-		data = (json["descricao"], json["dificuldade"])
+		query = ("INSERT INTO tarefa (descricao, criador, dificuldade) VALUES (%s, %s);")
+		data = (json["descricao"], json["criador"], json["dificuldade"])
 
 		# Execute and return
 		cursor.execute(query, data)
-		return jsonify({"status": "ok"})
+		return jsonify({"status": "tarefa criada"})
 
 	except Exception as e:
 		return jsonify({"status": "nok"})
@@ -92,7 +92,7 @@ def atribuirTarefa():
 				return jsonify({"status": "nok"})
 
 		# Prepare query
-		query = ("INSERT INTO faz (filho, tarefa, data_conclusao, supervisor) VALUES (%s, %s, %s, %s);")
+		query = ("INSERT INTO realiza (filho, tarefa, data_conclusao, supervisor) VALUES (%s, %s, %s, %s);")
 		data = (json["filho"], json["tarefa"], json["data_conclusao"], json["supervisor"])
 
 		# Execute and return
@@ -124,7 +124,7 @@ def listarTarefas():
 				return jsonify({"status": "nok"})
 
 		# Prepare query
-		query = "WITH tarefas AS (SELECT * FROM faz WHERE filho = %s) SELECT json_agg(tarefas) FROM tarefas;"
+		query = ("SELECT json_agg(*) FROM realiza WHERE filho = %s;")
 		data = (json["filho"],)
 
 		# Execute and return
@@ -156,7 +156,7 @@ def alterarStatusTarefa():
 				return jsonify({"status": "nok"})
 
 		# Prepare query
-		query = ("UPDATE faz SET status = %s WHERE id = %s;")
+		query = ("UPDATE realiza SET status = %s WHERE id = %s;")
 		data = (json["status"], json["id"])
 
 		# Execute and return
@@ -183,7 +183,7 @@ def listarPontuacao():
 		cursor = dbConn.cursor(cursor_factory=psycopg2.extras.DictCursor)
 
 		# Prepare query
-		query = "WITH pontos AS (SELECT nome, pontuacao FROM filho ORDER BY pontuacao DESC) SELECT json_agg(pontos) FROM pontos;"
+		query = ("SELECT json_agg(nome, pontuacao) FROM filho ORDER BY pontuacao DESC;")
 
 		# Execute and return
 		cursor.execute(query)
