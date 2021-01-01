@@ -1,0 +1,426 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 50;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		22A6CA3E259DDE3700FA81AD /* TarefaList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22A6CA3D259DDE3700FA81AD /* TarefaList.swift */; };
+		22A6CA41259DDE5B00FA81AD /* TarefaCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22A6CA40259DDE5B00FA81AD /* TarefaCard.swift */; };
+		22A6CA46259DDEE000FA81AD /* Tarefa.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22A6CA45259DDEE000FA81AD /* Tarefa.swift */; };
+		22A6CA50259DE59A00FA81AD /* TarefaDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22A6CA4F259DE59A00FA81AD /* TarefaDetail.swift */; };
+		22A6CA58259DE9B400FA81AD /* PersonImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22A6CA57259DE9B400FA81AD /* PersonImage.swift */; };
+		22A6CA5C259DE9F500FA81AD /* LoginScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22A6CA5B259DE9F500FA81AD /* LoginScreen.swift */; };
+		22A6CA61259DF1A900FA81AD /* PersonThumbnail.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22A6CA60259DF1A900FA81AD /* PersonThumbnail.swift */; };
+		22A6CA64259DF1ED00FA81AD /* Person.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22A6CA63259DF1ED00FA81AD /* Person.swift */; };
+		22A6CA6A259DF2C900FA81AD /* familyData.json in Resources */ = {isa = PBXBuildFile; fileRef = 22A6CA69259DF2C900FA81AD /* familyData.json */; };
+		22A6CA70259DF47500FA81AD /* ModelData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22A6CA6F259DF47500FA81AD /* ModelData.swift */; };
+		22A6CA74259DF4E100FA81AD /* tarefasData.json in Resources */ = {isa = PBXBuildFile; fileRef = 22A6CA73259DF4E100FA81AD /* tarefasData.json */; };
+		22A826FD259CD95C004959AC /* TarefasFlixApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22A826FC259CD95C004959AC /* TarefasFlixApp.swift */; };
+		22A826FF259CD95C004959AC /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22A826FE259CD95C004959AC /* ContentView.swift */; };
+		22A82701259CD95C004959AC /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 22A82700259CD95C004959AC /* Assets.xcassets */; };
+		22A82704259CD95C004959AC /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 22A82703259CD95C004959AC /* Preview Assets.xcassets */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		22A6CA3D259DDE3700FA81AD /* TarefaList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TarefaList.swift; sourceTree = "<group>"; };
+		22A6CA40259DDE5B00FA81AD /* TarefaCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TarefaCard.swift; sourceTree = "<group>"; };
+		22A6CA45259DDEE000FA81AD /* Tarefa.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tarefa.swift; sourceTree = "<group>"; };
+		22A6CA4F259DE59A00FA81AD /* TarefaDetail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TarefaDetail.swift; sourceTree = "<group>"; };
+		22A6CA57259DE9B400FA81AD /* PersonImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersonImage.swift; sourceTree = "<group>"; };
+		22A6CA5B259DE9F500FA81AD /* LoginScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginScreen.swift; sourceTree = "<group>"; };
+		22A6CA60259DF1A900FA81AD /* PersonThumbnail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersonThumbnail.swift; sourceTree = "<group>"; };
+		22A6CA63259DF1ED00FA81AD /* Person.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Person.swift; sourceTree = "<group>"; };
+		22A6CA69259DF2C900FA81AD /* familyData.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = familyData.json; sourceTree = "<group>"; };
+		22A6CA6F259DF47500FA81AD /* ModelData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModelData.swift; sourceTree = "<group>"; };
+		22A6CA73259DF4E100FA81AD /* tarefasData.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = tarefasData.json; sourceTree = "<group>"; };
+		22A826F9259CD95C004959AC /* TarefasFlix.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TarefasFlix.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		22A826FC259CD95C004959AC /* TarefasFlixApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TarefasFlixApp.swift; sourceTree = "<group>"; };
+		22A826FE259CD95C004959AC /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		22A82700259CD95C004959AC /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		22A82703259CD95C004959AC /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		22A82705259CD95C004959AC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		22A826F6259CD95C004959AC /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		22A6CA43259DDEAB00FA81AD /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				22A826FE259CD95C004959AC /* ContentView.swift */,
+				22A6CA54259DE64E00FA81AD /* Login */,
+				22A6CA53259DE5FF00FA81AD /* Tarefas */,
+				22A6CA55259DE65A00FA81AD /* Stats */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		22A6CA48259DDEFA00FA81AD /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				22A6CA6F259DF47500FA81AD /* ModelData.swift */,
+				22A6CA63259DF1ED00FA81AD /* Person.swift */,
+				22A6CA45259DDEE000FA81AD /* Tarefa.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		22A6CA53259DE5FF00FA81AD /* Tarefas */ = {
+			isa = PBXGroup;
+			children = (
+				22A6CA3D259DDE3700FA81AD /* TarefaList.swift */,
+				22A6CA40259DDE5B00FA81AD /* TarefaCard.swift */,
+				22A6CA4F259DE59A00FA81AD /* TarefaDetail.swift */,
+			);
+			path = Tarefas;
+			sourceTree = "<group>";
+		};
+		22A6CA54259DE64E00FA81AD /* Login */ = {
+			isa = PBXGroup;
+			children = (
+				22A6CA5B259DE9F500FA81AD /* LoginScreen.swift */,
+				22A6CA60259DF1A900FA81AD /* PersonThumbnail.swift */,
+				22A6CA57259DE9B400FA81AD /* PersonImage.swift */,
+			);
+			path = Login;
+			sourceTree = "<group>";
+		};
+		22A6CA55259DE65A00FA81AD /* Stats */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Stats;
+			path = "Pontuação";
+			sourceTree = "<group>";
+		};
+		22A6CA68259DF26600FA81AD /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				22A6CA69259DF2C900FA81AD /* familyData.json */,
+				22A6CA73259DF4E100FA81AD /* tarefasData.json */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		22A826F0259CD95C004959AC = {
+			isa = PBXGroup;
+			children = (
+				22A826FB259CD95C004959AC /* TarefasFlix */,
+				22A826FA259CD95C004959AC /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		22A826FA259CD95C004959AC /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				22A826F9259CD95C004959AC /* TarefasFlix.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		22A826FB259CD95C004959AC /* TarefasFlix */ = {
+			isa = PBXGroup;
+			children = (
+				22A826FC259CD95C004959AC /* TarefasFlixApp.swift */,
+				22A6CA43259DDEAB00FA81AD /* Views */,
+				22A6CA48259DDEFA00FA81AD /* Model */,
+				22A6CA68259DF26600FA81AD /* Resources */,
+				22A82700259CD95C004959AC /* Assets.xcassets */,
+				22A82705259CD95C004959AC /* Info.plist */,
+				22A82702259CD95C004959AC /* Preview Content */,
+			);
+			path = TarefasFlix;
+			sourceTree = "<group>";
+		};
+		22A82702259CD95C004959AC /* Preview Content */ = {
+			isa = PBXGroup;
+			children = (
+				22A82703259CD95C004959AC /* Preview Assets.xcassets */,
+			);
+			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		22A826F8259CD95C004959AC /* TarefasFlix */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 22A82708259CD95C004959AC /* Build configuration list for PBXNativeTarget "TarefasFlix" */;
+			buildPhases = (
+				22A826F5259CD95C004959AC /* Sources */,
+				22A826F6259CD95C004959AC /* Frameworks */,
+				22A826F7259CD95C004959AC /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = TarefasFlix;
+			productName = TarefasFlix;
+			productReference = 22A826F9259CD95C004959AC /* TarefasFlix.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		22A826F1259CD95C004959AC /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 1230;
+				LastUpgradeCheck = 1230;
+				TargetAttributes = {
+					22A826F8259CD95C004959AC = {
+						CreatedOnToolsVersion = 12.3;
+					};
+				};
+			};
+			buildConfigurationList = 22A826F4259CD95C004959AC /* Build configuration list for PBXProject "TarefasFlix" */;
+			compatibilityVersion = "Xcode 9.3";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 22A826F0259CD95C004959AC;
+			productRefGroup = 22A826FA259CD95C004959AC /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				22A826F8259CD95C004959AC /* TarefasFlix */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		22A826F7259CD95C004959AC /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				22A6CA74259DF4E100FA81AD /* tarefasData.json in Resources */,
+				22A6CA6A259DF2C900FA81AD /* familyData.json in Resources */,
+				22A82704259CD95C004959AC /* Preview Assets.xcassets in Resources */,
+				22A82701259CD95C004959AC /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		22A826F5259CD95C004959AC /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				22A6CA46259DDEE000FA81AD /* Tarefa.swift in Sources */,
+				22A6CA41259DDE5B00FA81AD /* TarefaCard.swift in Sources */,
+				22A6CA61259DF1A900FA81AD /* PersonThumbnail.swift in Sources */,
+				22A6CA5C259DE9F500FA81AD /* LoginScreen.swift in Sources */,
+				22A6CA64259DF1ED00FA81AD /* Person.swift in Sources */,
+				22A6CA3E259DDE3700FA81AD /* TarefaList.swift in Sources */,
+				22A826FF259CD95C004959AC /* ContentView.swift in Sources */,
+				22A826FD259CD95C004959AC /* TarefasFlixApp.swift in Sources */,
+				22A6CA50259DE59A00FA81AD /* TarefaDetail.swift in Sources */,
+				22A6CA58259DE9B400FA81AD /* PersonImage.swift in Sources */,
+				22A6CA70259DF47500FA81AD /* ModelData.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin XCBuildConfiguration section */
+		22A82706259CD95C004959AC /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.3;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		22A82707259CD95C004959AC /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.3;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		22A82709259CD95C004959AC /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_ASSET_PATHS = "\"TarefasFlix/Preview Content\"";
+				DEVELOPMENT_TEAM = 4TUPR7BMNQ;
+				ENABLE_PREVIEWS = YES;
+				INFOPLIST_FILE = TarefasFlix/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.example.TarefasFlix;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		22A8270A259CD95C004959AC /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_ASSET_PATHS = "\"TarefasFlix/Preview Content\"";
+				DEVELOPMENT_TEAM = 4TUPR7BMNQ;
+				ENABLE_PREVIEWS = YES;
+				INFOPLIST_FILE = TarefasFlix/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.example.TarefasFlix;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		22A826F4259CD95C004959AC /* Build configuration list for PBXProject "TarefasFlix" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				22A82706259CD95C004959AC /* Debug */,
+				22A82707259CD95C004959AC /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		22A82708259CD95C004959AC /* Build configuration list for PBXNativeTarget "TarefasFlix" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				22A82709259CD95C004959AC /* Debug */,
+				22A8270A259CD95C004959AC /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 22A826F1259CD95C004959AC /* Project object */;
+}
