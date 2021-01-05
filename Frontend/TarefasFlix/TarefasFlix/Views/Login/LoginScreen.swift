@@ -8,36 +8,43 @@
 import SwiftUI
 
 struct LoginScreen: View {
-    @EnvironmentObject var familyLoader: FamilyLoader
+    var logo = Image("TarefasFlix Logo")
+    var family: [Person] {
+        FamilyLoader().family
+    }
     
     var body: some View {
-        List {
-            HStack {
-                Spacer()
-                Text("Quem está a ver as TarefasFlix?")
-                    .font(.title3)
-                    .fontWeight(.bold)
-                Spacer()
-            }
-            
-            Spacer()
-            
-            LazyVGrid(columns: [GridItem(), GridItem()]) {
-                ForEach(familyLoader.family) { person in
-                    PersonThumbnail(person: person)
-                        .padding(.bottom)
+        NavigationView {
+            ScrollView {
+                logo
+                    .offset(y: -130)
+                HStack {
+                    Spacer()
+                    Text("Quem está a ver?")
+                        .font(.title)
+                        .fontWeight(.bold)
+                    Spacer()
                 }
+                .offset(y: -170)
+                Spacer()
+                    .frame(height: 50)
+                LazyVGrid(columns: [GridItem(), GridItem()]) {
+                    ForEach(family) { person in
+                        let fetcher = TarefasFetcher(person.name)
+                            NavigationLink(destination: TarefaList(fetcher: fetcher)) {
+                                PersonThumbnail(person: person)
+                                    .padding(.bottom)
+                            }
+                    }
+                }
+                .offset(y: -170)
             }
         }
-        .offset(y: 80)
-        .preferredColorScheme(.dark)
     }
 }
 
 struct LoginScreen_Previews: PreviewProvider {
     static var previews: some View {
         LoginScreen()
-            .environmentObject(FamilyLoader())
-            //.preferredColorScheme(.dark)
     }
 }

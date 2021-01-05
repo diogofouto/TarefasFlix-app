@@ -9,10 +9,11 @@ import Foundation
 import Combine
 
 public class TarefasFetcher: ObservableObject {
-
+    var person: String
     @Published var tarefas = [Tarefa]()
     
-    init(){
+    init(_ person: String){
+        self.person = person
         load()
     }
     
@@ -28,7 +29,7 @@ public class TarefasFetcher: ObservableObject {
         request.setValue("application/json", forHTTPHeaderField: "Content-Type")
         
         // Create POST json data
-        let postData: [String: Any] = ["filho": "Diogo"]
+        let postData: [String: Any] = ["filho": "\(self.person)"]
         let postJson: Data
         do {
             postJson = try JSONSerialization.data(withJSONObject: postData)

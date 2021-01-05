@@ -8,28 +8,31 @@
 import Foundation
 import Combine
 
-final class FamilyLoader: ObservableObject {
-    @Published var family: [Person] = loadPerson("familyData.json")
-}
-
-func loadPerson<T: Decodable>(_ filename: String) -> T {
-    let data: Data
-
-    guard let file = Bundle.main.url(forResource: filename, withExtension: nil)
-    else {
-        fatalError("Couldn't find \(filename) in main bundle.")
+public class FamilyLoader: ObservableObject {
+    @Published var family = [Person]()
+    
+    init(){
+        load()
     }
+    
+    func load() {
+        let data: Data
 
-    do {
-        data = try Data(contentsOf: file)
-    } catch {
-        fatalError("Couldn't load \(filename) from main bundle:\n\(error)")
-    }
+        guard let file = Bundle.main.url(forResource: "familyData.json", withExtension: nil)
+        else {
+            fatalError("Couldn't find familyData.json in main bundle.")
+        }
 
-    do {
-        let decoder = JSONDecoder()
-        return try decoder.decode(T.self, from: data)
-    } catch {
-        fatalError("Couldn't parse \(filename) as \(T.self):\n\(error)")
+        do {
+            data = try Data(contentsOf: file)
+        } catch {
+            fatalError("Couldn't load familyData.json from main bundle:\n\(error)")
+        }
+
+        do {
+            self.family = try JSONDecoder().decode([Person].self, from: data)
+        } catch {
+            fatalError("Couldn't parse familyData.json: \(error)")
+        }
     }
 }

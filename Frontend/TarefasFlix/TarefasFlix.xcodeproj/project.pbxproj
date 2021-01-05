@@ -11,7 +11,6 @@
 		22A6CA3E259DDE3700FA81AD /* TarefaList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22A6CA3D259DDE3700FA81AD /* TarefaList.swift */; };
 		22A6CA41259DDE5B00FA81AD /* TarefaCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22A6CA40259DDE5B00FA81AD /* TarefaCard.swift */; };
 		22A6CA46259DDEE000FA81AD /* Tarefa.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22A6CA45259DDEE000FA81AD /* Tarefa.swift */; };
-		22A6CA50259DE59A00FA81AD /* TarefaDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22A6CA4F259DE59A00FA81AD /* TarefaDetail.swift */; };
 		22A6CA58259DE9B400FA81AD /* PersonImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22A6CA57259DE9B400FA81AD /* PersonImage.swift */; };
 		22A6CA5C259DE9F500FA81AD /* LoginScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22A6CA5B259DE9F500FA81AD /* LoginScreen.swift */; };
 		22A6CA61259DF1A900FA81AD /* PersonThumbnail.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22A6CA60259DF1A900FA81AD /* PersonThumbnail.swift */; };
@@ -30,7 +29,6 @@
 		22A6CA3D259DDE3700FA81AD /* TarefaList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TarefaList.swift; sourceTree = "<group>"; };
 		22A6CA40259DDE5B00FA81AD /* TarefaCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TarefaCard.swift; sourceTree = "<group>"; };
 		22A6CA45259DDEE000FA81AD /* Tarefa.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tarefa.swift; sourceTree = "<group>"; };
-		22A6CA4F259DE59A00FA81AD /* TarefaDetail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TarefaDetail.swift; sourceTree = "<group>"; };
 		22A6CA57259DE9B400FA81AD /* PersonImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersonImage.swift; sourceTree = "<group>"; };
 		22A6CA5B259DE9F500FA81AD /* LoginScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginScreen.swift; sourceTree = "<group>"; };
 		22A6CA60259DF1A900FA81AD /* PersonThumbnail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersonThumbnail.swift; sourceTree = "<group>"; };
@@ -84,7 +82,6 @@
 			children = (
 				22A6CA3D259DDE3700FA81AD /* TarefaList.swift */,
 				22A6CA40259DDE5B00FA81AD /* TarefaCard.swift */,
-				22A6CA4F259DE59A00FA81AD /* TarefaDetail.swift */,
 			);
 			path = Tarefas;
 			sourceTree = "<group>";
@@ -234,7 +231,6 @@
 				22A6CA3E259DDE3700FA81AD /* TarefaList.swift in Sources */,
 				22A826FF259CD95C004959AC /* ContentView.swift in Sources */,
 				22A826FD259CD95C004959AC /* TarefasFlixApp.swift in Sources */,
-				22A6CA50259DE59A00FA81AD /* TarefaDetail.swift in Sources */,
 				22A6CA58259DE9B400FA81AD /* PersonImage.swift in Sources */,
 				22A6CA70259DF47500FA81AD /* FamilyLoader.swift in Sources */,
 			);

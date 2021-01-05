@@ -16,5 +16,5 @@ struct Tarefa: Hashable, Codable, Identifiable {
     var data_conclusao: String
     var supervisor: String
     var status: String
-    var recompensa: String?
+    var recompensa: String!
 }

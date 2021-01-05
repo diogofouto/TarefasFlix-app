@@ -8,15 +8,18 @@
 import SwiftUI
 
 struct TarefaCard: View {
+    var tarefa: Tarefa
     var body: some View {
         VStack {
             HStack {
-                Text("Aspirar o Tesla")
-                Text("Até: 12-12-2021")
+                Text(tarefa.tarefa)
+                Text("Até: \(tarefa.data_conclusao)")
             }
             HStack {
-                Text("Comer chocolate")
-                Text("...")
+                Text("Por: \(tarefa.supervisor)")
+                if tarefa.recompensa != nil {
+                    Text("Recompensa: \(tarefa.recompensa)")
+                }
             }
         }
         .padding()
@@ -31,7 +34,9 @@ struct TarefaCard: View {
 }
 
 struct TarefaCard_Previews: PreviewProvider {
+    @ObservedObject static var fetcher = TarefasFetcher("Diogo")
+    static var tarefa = fetcher.tarefas[0]
     static var previews: some View {
-        TarefaCard()
+        TarefaCard(tarefa: tarefa)
     }
 }

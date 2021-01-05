@@ -15,7 +15,7 @@ struct PersonThumbnail: View {
             PersonImage(image: person.image)
             Text(person.name)
                 .fontWeight(.bold)
-                .foregroundColor(Color.white)
+                .foregroundColor(.black)
             Spacer()
         }
         .frame(width: 100, height: 100)
@@ -27,7 +27,6 @@ struct PersonThumbnail_Previews: PreviewProvider {
     
     static var previews: some View {
         PersonThumbnail(person: family[5])
-            .preferredColorScheme(.dark)
             .previewLayout(.fixed(width: 100, height: 100))
     }
 }
