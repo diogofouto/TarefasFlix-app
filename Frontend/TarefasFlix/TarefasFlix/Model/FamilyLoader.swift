@@ -1,5 +1,5 @@
 //
-//  TarefaModelData.swift
+//  TarefaFamilyLoader.swift
 //  TarefasFlix
 //
 //  Created by Diogo Fouto on 31/12/2020.
@@ -8,12 +8,11 @@
 import Foundation
 import Combine
 
-final class ModelData: ObservableObject {
-    //@Published var tarefas: [Tarefa] = load("tarefasData.json")
-    @Published var family: [Person] = load("familyData.json")
+final class FamilyLoader: ObservableObject {
+    @Published var family: [Person] = loadPerson("familyData.json")
 }
 
-func load<T: Decodable>(_ filename: String) -> T {
+func loadPerson<T: Decodable>(_ filename: String) -> T {
     let data: Data
 
     guard let file = Bundle.main.url(forResource: filename, withExtension: nil)

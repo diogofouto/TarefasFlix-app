@@ -129,7 +129,8 @@ def listarTarefas():
 
 		# Execute and return
 		cursor.execute(query, data)
-		return jsonify(cursor.fetchone())
+		d = str(cursor.fetchone())[1:-1]
+		return jsonify(eval(d))
 
 	except Exception as e:
 		return jsonify({"status": "nok"})

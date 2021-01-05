@@ -9,12 +9,12 @@ import SwiftUI
 
 @main
 struct TarefasFlixApp: App {
-    @StateObject private var modelData = ModelData()
+    @StateObject private var familyLoader = FamilyLoader()
     
     var body: some Scene {
         WindowGroup {
             ContentView()
-                .environmentObject(modelData)
+                .environmentObject(familyLoader)
         }
     }
 }

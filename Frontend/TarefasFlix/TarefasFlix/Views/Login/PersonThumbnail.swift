@@ -23,7 +23,7 @@ struct PersonThumbnail: View {
 }
 
 struct PersonThumbnail_Previews: PreviewProvider {
-    static var family = ModelData().family
+    static var family = FamilyLoader().family
     
     static var previews: some View {
         PersonThumbnail(person: family[5])

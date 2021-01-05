@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct LoginScreen: View {
-    @EnvironmentObject var modelData: ModelData
+    @EnvironmentObject var familyLoader: FamilyLoader
     
     var body: some View {
         List {
@@ -23,7 +23,7 @@ struct LoginScreen: View {
             Spacer()
             
             LazyVGrid(columns: [GridItem(), GridItem()]) {
-                ForEach(modelData.family) { person in
+                ForEach(familyLoader.family) { person in
                     PersonThumbnail(person: person)
                         .padding(.bottom)
                 }
@@ -37,7 +37,7 @@ struct LoginScreen: View {
 struct LoginScreen_Previews: PreviewProvider {
     static var previews: some View {
         LoginScreen()
-            .environmentObject(ModelData())
+            .environmentObject(FamilyLoader())
             //.preferredColorScheme(.dark)
     }
 }
