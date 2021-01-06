@@ -9,27 +9,38 @@ import SwiftUI
 
 struct TarefaCard: View {
     var tarefa: Tarefa
+    
     var body: some View {
         VStack {
-            HStack {
-                Text(tarefa.tarefa)
-                Text("Até: \(tarefa.data_conclusao)")
-            }
-            HStack {
+            Text(tarefa.tarefa)
+                .font(.title2)
+                .fontWeight(.semibold)
+                .foregroundColor(Color(.sRGB, red: 200/255, green: 0/255, blue: 0/255))
+            Divider()
+            VStack(alignment: .leading) {
                 Text("Por: \(tarefa.supervisor)")
+                Text("Até: \(tarefa.data_conclusao)")
                 if tarefa.recompensa != nil {
                     Text("Recompensa: \(tarefa.recompensa)")
                 }
+                Divider()
+                HStack {
+                    Text("Status:")
+                    Text("\(tarefa.status)".capitalized)
+                        .font(.title3)
+                        .fontWeight(.medium)
+                }
             }
+            .font(.body)
         }
         .padding()
-        .cornerRadius(10)
+        .cornerRadius(20)
         .overlay(
-            RoundedRectangle(cornerRadius: 10)
+            RoundedRectangle(cornerRadius: 20)
                 .stroke(Color(.sRGB, red: 150/255, green: 150/255, blue: 150/255,
                               opacity: 0.5), lineWidth: 1)
+                .shadow(radius: 3)
         )
-        
     }
 }
 

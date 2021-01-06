@@ -14,7 +14,7 @@ struct PersonThumbnail: View {
         VStack {
             PersonImage(image: person.image)
             Text(person.name)
-                .fontWeight(.bold)
+                .fontWeight(.regular)
                 .foregroundColor(.black)
             Spacer()
         }

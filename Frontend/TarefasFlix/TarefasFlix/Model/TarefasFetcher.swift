@@ -18,7 +18,7 @@ public class TarefasFetcher: ObservableObject {
     }
     
     func load(){
-        // Set POST method & endpoint url
+        // Prepare POST request
         guard let url = URL(string: "http://web2.ist.utl.pt/ist193705/household-chores-app/backend.cgi/listarTarefasPorFilho") else {
             print("Error: invalid API endpoint")
             return
@@ -28,7 +28,7 @@ public class TarefasFetcher: ObservableObject {
         request.setValue("*/*", forHTTPHeaderField: "Accept")
         request.setValue("application/json", forHTTPHeaderField: "Content-Type")
         
-        // Create POST json data
+        // Create & add JSON to request
         let postData: [String: Any] = ["filho": "\(self.person)"]
         let postJson: Data
         do {
@@ -39,11 +39,11 @@ public class TarefasFetcher: ObservableObject {
             return
         }
         
-        // POST connect: send request and get response
+        // Send request and get response
         URLSession.shared.dataTask(with: request) {(data, response, error) in
             do {
                 if let d = data {
-                    // Decode json response and assign tarefas to tarefas
+                    // Decode json response and assign tarefas
                     if let JSONString = String(data: d, encoding: String.Encoding.utf8) {
                        print(JSONString)
                     }

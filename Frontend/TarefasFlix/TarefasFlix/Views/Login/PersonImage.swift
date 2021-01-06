@@ -13,7 +13,7 @@ struct PersonImage: View {
     var body: some View {
         image
             .resizable()
-            .frame(width: 60, height: 70, alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/)
+            .frame(width: 75, height: 85, alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/)
             .clipShape(Circle())
             .overlay(Circle().stroke(Color("accentColor"), lineWidth: 3))
             .shadow(radius: 4)

@@ -17,7 +17,6 @@
 		22A6CA64259DF1ED00FA81AD /* Person.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22A6CA63259DF1ED00FA81AD /* Person.swift */; };
 		22A6CA6A259DF2C900FA81AD /* familyData.json in Resources */ = {isa = PBXBuildFile; fileRef = 22A6CA69259DF2C900FA81AD /* familyData.json */; };
 		22A6CA70259DF47500FA81AD /* FamilyLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22A6CA6F259DF47500FA81AD /* FamilyLoader.swift */; };
-		22A6CA74259DF4E100FA81AD /* tarefasData.json in Resources */ = {isa = PBXBuildFile; fileRef = 22A6CA73259DF4E100FA81AD /* tarefasData.json */; };
 		22A826FD259CD95C004959AC /* TarefasFlixApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22A826FC259CD95C004959AC /* TarefasFlixApp.swift */; };
 		22A826FF259CD95C004959AC /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22A826FE259CD95C004959AC /* ContentView.swift */; };
 		22A82701259CD95C004959AC /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 22A82700259CD95C004959AC /* Assets.xcassets */; };
@@ -35,7 +34,6 @@
 		22A6CA63259DF1ED00FA81AD /* Person.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Person.swift; sourceTree = "<group>"; };
 		22A6CA69259DF2C900FA81AD /* familyData.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = familyData.json; sourceTree = "<group>"; };
 		22A6CA6F259DF47500FA81AD /* FamilyLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FamilyLoader.swift; sourceTree = "<group>"; };
-		22A6CA73259DF4E100FA81AD /* tarefasData.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = tarefasData.json; sourceTree = "<group>"; };
 		22A826F9259CD95C004959AC /* TarefasFlix.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TarefasFlix.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		22A826FC259CD95C004959AC /* TarefasFlixApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TarefasFlixApp.swift; sourceTree = "<group>"; };
 		22A826FE259CD95C004959AC /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -61,7 +59,6 @@
 				22A826FE259CD95C004959AC /* ContentView.swift */,
 				22A6CA54259DE64E00FA81AD /* Login */,
 				22A6CA53259DE5FF00FA81AD /* Tarefas */,
-				22A6CA55259DE65A00FA81AD /* Stats */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -96,19 +93,10 @@
 			path = Login;
 			sourceTree = "<group>";
 		};
-		22A6CA55259DE65A00FA81AD /* Stats */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			name = Stats;
-			path = "Pontuação";
-			sourceTree = "<group>";
-		};
 		22A6CA68259DF26600FA81AD /* Resources */ = {
 			isa = PBXGroup;
 			children = (
 				22A6CA69259DF2C900FA81AD /* familyData.json */,
-				22A6CA73259DF4E100FA81AD /* tarefasData.json */,
 			);
 			path = Resources;
 			sourceTree = "<group>";
@@ -208,7 +196,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				22A6CA74259DF4E100FA81AD /* tarefasData.json in Resources */,
 				22A6CA6A259DF2C900FA81AD /* familyData.json in Resources */,
 				22A82704259CD95C004959AC /* Preview Assets.xcassets in Resources */,
 				22A82701259CD95C004959AC /* Assets.xcassets in Resources */,

@@ -15,29 +15,41 @@ struct LoginScreen: View {
     
     var body: some View {
         NavigationView {
-            ScrollView {
+            VStack {
+                // Headers
                 logo
-                    .offset(y: -130)
+                    .offset(y: -70)
                 HStack {
                     Spacer()
                     Text("Quem está a ver?")
                         .font(.title)
-                        .fontWeight(.bold)
+                        .fontWeight(.medium)
                     Spacer()
                 }
-                .offset(y: -170)
+                .offset(y: -110)
+                
                 Spacer()
                     .frame(height: 50)
+                
+                // Show people thumbnails
                 LazyVGrid(columns: [GridItem(), GridItem()]) {
                     ForEach(family) { person in
-                        let fetcher = TarefasFetcher(person.name)
+                        // If filho, show tarefas
+                        if (person.position == "filho") {
+                            let fetcher = TarefasFetcher(person.name)
                             NavigationLink(destination: TarefaList(fetcher: fetcher)) {
                                 PersonThumbnail(person: person)
                                     .padding(.bottom)
                             }
+                        }
+                        // If supervisor, show options
+                        else {
+                            PersonThumbnail(person: person)
+                                .padding(.bottom)
+                        }
                     }
                 }
-                .offset(y: -170)
+                .offset(y: -100)
             }
         }
     }

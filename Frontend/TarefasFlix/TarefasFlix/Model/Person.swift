@@ -11,6 +11,7 @@ import SwiftUI
 struct Person: Hashable, Codable, Identifiable {
     var id: Int
     var name: String
+    var position: String
 
     var image: Image {
         Image(name)
