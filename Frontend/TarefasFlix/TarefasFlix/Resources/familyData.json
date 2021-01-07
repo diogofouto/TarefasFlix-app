@@ -12,31 +12,31 @@
     {
         "id": 3,
         "name": "Diogo",
-        "position": "filho"
+        "position": "agent"
     },
     {
         "id": 4,
         "name": "Francisco",
-        "position": "filho"
+        "position": "agent"
     },
     {
         "id": 5,
         "name": "Joana",
-        "position": "filho"
+        "position": "agent"
     },
     {
         "id": 6,
         "name": "Sofia",
-        "position": "filho"
+        "position": "agent"
     },
     {
         "id": 7,
         "name": "Afonso",
-        "position": "filho"
+        "position": "agent"
     },
     {
         "id": 8,
         "name": "Marta",
-        "position": "filho"
+        "position": "agent"
     }
 ]

@@ -8,13 +8,13 @@
 import Foundation
 import SwiftUI
 
-struct Tarefa: Hashable, Codable, Identifiable {
+struct News: Hashable, Codable, Identifiable {
     var id: Int
-    var tarefa: String
-    var filho: String
-    var data_registo: String
-    var data_conclusao: String
+    var task: String
+    var agent: String
+    var start_date: String
+    var deadline_date: String
     var supervisor: String
     var status: String
-    var recompensa: String!
+    var reward: String!
 }

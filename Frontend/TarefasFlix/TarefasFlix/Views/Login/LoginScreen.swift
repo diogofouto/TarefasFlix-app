@@ -1,6 +1,6 @@
 //
 //  LoginScreen.swift
-//  TarefasFlix
+//  AssignmentsFlix
 //
 //  Created by Diogo Fouto on 31/12/2020.
 //
@@ -34,18 +34,21 @@ struct LoginScreen: View {
                 // Show people thumbnails
                 LazyVGrid(columns: [GridItem(), GridItem()]) {
                     ForEach(family) { person in
-                        // If filho, show tarefas
-                        if (person.position == "filho") {
-                            let fetcher = TarefasFetcher(person.name)
-                            NavigationLink(destination: TarefaList(fetcher: fetcher)) {
-                                PersonThumbnail(person: person)
+                        // If agent, show assignments
+                        if (person.position == "agent") {
+                            let fetcher = AssignmentsFetcher(person.name)
+                            NavigationLink(destination: AssignmentList(fetcher: fetcher)) {
+                                PersonThumbnail(name: person.name)
                                     .padding(.bottom)
                             }
                         }
-                        // If supervisor, show options
+                        // If supervisor, show news
                         else {
-                            PersonThumbnail(person: person)
-                                .padding(.bottom)
+                            let fetcher = NewsFetcher(person.name)
+                            NavigationLink(destination: NewsList(fetcher: fetcher)) {
+                                PersonThumbnail(name: person.name)
+                                    .padding(.bottom)
+                            }
                         }
                     }
                 }

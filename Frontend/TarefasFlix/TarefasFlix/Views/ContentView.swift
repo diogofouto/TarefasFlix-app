@@ -13,17 +13,15 @@ struct ContentView: View {
     // For 1 second, show splash screen. Then, show LoginScreen
     var body: some View {
         VStack {
-            if self.showLoginScreen
-            {
+            if self.showLoginScreen {
                 LoginScreen()
             }
-            else
-            {
+            else {
                 Image("TarefasFlix Logo")
             }
         }
         .onAppear {
-            DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
                 withAnimation {
                     self.showLoginScreen = true
                 }

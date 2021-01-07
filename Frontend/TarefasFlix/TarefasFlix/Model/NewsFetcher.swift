@@ -8,18 +8,18 @@
 import Foundation
 import Combine
 
-public class TarefasFetcher: ObservableObject {
-    var person: String
-    @Published var tarefas = [Tarefa]()
+public class NewsFetcher: ObservableObject {
+    var supervisor: String
+    @Published var news = [News]()
     
-    init(_ person: String){
-        self.person = person
+    init(_ supervisor: String){
+        self.supervisor = supervisor
         load()
     }
     
     func load(){
         // Prepare POST request
-        guard let url = URL(string: "http://web2.ist.utl.pt/ist193705/household-chores-app/backend.cgi/listarTarefasPorFilho") else {
+        guard let url = URL(string: "http://web2.ist.utl.pt/ist193705/TarefasFlix/backend.cgi/listNewsPerAgent") else {
             print("Error: invalid API endpoint")
             return
         }
@@ -29,7 +29,7 @@ public class TarefasFetcher: ObservableObject {
         request.setValue("application/json", forHTTPHeaderField: "Content-Type")
         
         // Create & add JSON to request
-        let postData: [String: Any] = ["filho": "\(self.person)"]
+        let postData: [String: Any] = ["supervisor": "\(self.supervisor)"]
         let postJson: Data
         do {
             postJson = try JSONSerialization.data(withJSONObject: postData)
@@ -47,9 +47,9 @@ public class TarefasFetcher: ObservableObject {
                     if let JSONString = String(data: d, encoding: String.Encoding.utf8) {
                        print(JSONString)
                     }
-                    let response = try JSONDecoder().decode([Tarefa].self, from: d)
+                    let response = try JSONDecoder().decode([News].self, from: d)
                     DispatchQueue.main.async {
-                        self.tarefas = response
+                        self.news = response
                     }
                 } else {
                     print("No Data in response")

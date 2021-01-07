@@ -8,12 +8,14 @@
 import SwiftUI
 
 struct PersonImage: View {
-    var image: Image
+    var name: String
+    var width1 = 75
+    var height1 = 90
 
     var body: some View {
-        image
+        Image(name)
             .resizable()
-            .frame(width: 75, height: 85, alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/)
+            .frame(width: CGFloat(width1), height: CGFloat(height1), alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/)
             .clipShape(Circle())
             .overlay(Circle().stroke(Color("accentColor"), lineWidth: 3))
             .shadow(radius: 4)
@@ -22,6 +24,6 @@ struct PersonImage: View {
 
 struct PersonImage_Previews: PreviewProvider {
     static var previews: some View {
-        PersonImage(image: Image("Sofia"))
+        PersonImage(name: "Sofia", width1: 75, height1: 90)
     }
 }

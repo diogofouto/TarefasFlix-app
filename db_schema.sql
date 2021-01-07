@@ -9,109 +9,69 @@
 -- -------------------------------------------------------------------------------
 -- Remove previous tables
 -- -------------------------------------------------------------------------------
-drop table pai cascade;
-drop table filho cascade;
-drop table tarefa cascade;
-drop table realiza cascade;
+drop table supervisor cascade;
+drop table agent cascade;
+drop table task cascade;
+drop table assignment cascade;
 
 
 -- -------------------------------------------------------------------------------
 -- Create tables
 -- -------------------------------------------------------------------------------
-create table pai (
-	nome varchar(5)
-	check(nome in ("Pai", "Mãe")),
+create table supervisor (
+	name varchar(50),
 	pin varchar(100),
-	primary key(nome)
+	primary key(name)
 );
 -- Os pins (4 dígitos) são encriptados com SHA-1 (daí o varchar(100))
 
-create table filho ( 
-  nome varchar(10),
-  pontuacao integer default 0,
-  habilidade integer
-  check(habilidade in (1,2,3)),
-  primary key(nome)
+create table agent ( 
+  name varchar(50),
+  score integer default 0,
+  primary key(name)
 );
 
-create table tarefa ( 
-  descricao varchar(50),
-  criador varchar(5),
-  dificuldade integer
-  check(dificuldade in (1,2,3)),
-  primary key(descricao),
-  foreign key(criador) references pai(nome) on delete cascade on update cascade
+create table task ( 
+  description varchar(50),
+  difficulty integer
+  check(difficulty in (1,2,3)),
+  primary key(description)
 );
 
-create table realiza ( 
+create table assignment ( 
   id serial,
-  filho varchar(10),
-  tarefa varchar(50),
-  data_registo date not null default current_date,
-  data_conclusao date not null,
-  supervisor varchar(10),
+  agent varchar(50),
+  task varchar(50),
+  start_date date not null default current_date,
+  deadline_date date not null,
+  supervisor varchar(50),
   status varchar(15) default 'para fazer'
   check(status in ('a fazer', 'feito', 'para fazer')),
-  recompensa varchar(50),
+  reward varchar(50),
   primary key(id),
-  foreign key(filho) references filho(nome) on delete cascade on update cascade,
-  foreign key(tarefa) references tarefa(descricao) on delete cascade on update cascade
+  foreign key(agent) references agent(name) on delete cascade on update cascade,
+  foreign key(task) references task(description) on delete cascade on update cascade
 );
 
 
 -- -------------------------------------------------------------------------------------
--- RI 1 - trigger to add points once realiza.status = 'feito'
+-- RI 1 - trigger to add points once assignment.status = 'feito'
 -- -------------------------------------------------------------------------------------
-drop trigger if exists add_points on realiza;
+drop trigger if exists add_points on assignment;
 
 create or replace function add_points_proc()
 returns trigger as
 $$
 begin
-	-- Se a tarefa estiver feita, incrementar pontuacao do filho
+	-- Se a tarefa estiver feita, incrementar score do agent
   if new.status = 'feito' then
-    update filho
-    set pontuacao = pontuacao + (select dificuldade from tarefa where new.tarefa = tarefa.descricao)
-    where filho.nome = new.filho;
+    update agent
+    set score = score + (select difficulty from task where new.task = task.description)
+    where agent.name = new.agent;
   end if;
   return new;
 end
 $$ language plpgsql;
 
-create trigger add_points before update on realiza
+create trigger add_points before update on assignment
 for each row execute procedure add_points_proc();
-
-
--- -------------------------------------------------------------------------------------
--- RI 2 - trigger to check filho.habilidade <= tarefa.dificuldade
--- -------------------------------------------------------------------------------------
-drop trigger if exists check_dificuldade on realiza;
-
-create or replace function check_dificuldade_proc()
-returns trigger as
-$$
-declare habilidade integer;
-declare dificuldade integer;
-begin
-	-- Get habilidade
-	select filho.habilidade into habilidade
-	from filho
-	where filho.nome = new.filho;
-
-	-- Get dificuldade
-	select tarefa.dificuldade into dificuldade
-	from tarefa
-	where tarefa.descricao = new.tarefa;
-
-	-- Compare them
-  if dificuldade > habilidade then
-    raise exception 'O filho % não pode realizar tarefas com dificuldade maior à sua habilidae', new.filho;
-  end if;
-
-  -- Else, continue
-  return new;
-end
-$$ language plpgsql;
-
-create trigger check_dificuldade before insert on realiza
-for each row execute procedure check_dificuldade_proc();

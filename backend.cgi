@@ -8,7 +8,7 @@
 #			by: 				 	 Diogo
 #
 #			Description:	 Flask connects to and queries database at db.tecnico.ulisboa.pt.
-#										 Gets requests from and replies to frontend using REST API.
+#							 Gets requests from and replies to frontend using REST API.
 #						
 #			Frontend frameworks suggestions: React Native, Flutter (both cross platform).
 # -----------------------------------------------------------------------------------------
@@ -42,9 +42,9 @@ def debug():
 		return jsonify({"status": "nok"})
 
 
-# CRIAR TAREFA
-@app.route('/criarTarefa', methods=["POST"])
-def criarTarefa():
+# CRIAR task
+@app.route('/createTask', methods=["POST"])
+def createTask():
 	dbConn=None
 	cursor=None
 
@@ -59,12 +59,12 @@ def criarTarefa():
 				return jsonify({"status": "nok"})
 
 		# Prepare query
-		query = ("INSERT INTO tarefa (descricao, criador, dificuldade) VALUES (%s, %s, %s);")
-		data = (json["descricao"], json["criador"], json["dificuldade"])
+		query = ("INSERT INTO task (description, difficulty) VALUES (%s, %s);")
+		data = (json["description"], json["difficulty"])
 
 		# Execute and return
 		cursor.execute(query, data)
-		return jsonify({"status": "tarefa criada com sucesso!"})
+		return jsonify({"status": "success!"})
 
 	except Exception as e:
 		return jsonify({"status": "nok"})
@@ -75,9 +75,9 @@ def criarTarefa():
 		dbConn.close()
 
 
-# ATRIBUIR TAREFA
-@app.route('/atribuirTarefa', methods=["POST"])
-def atribuirTarefa():
+# ATRIBUIR task
+@app.route('/assignTask', methods=["POST"])
+def assignTask():
 	dbConn=None
 	cursor=None
 
@@ -92,8 +92,8 @@ def atribuirTarefa():
 				return jsonify({"status": "nok"})
 
 		# Prepare query
-		query = ("INSERT INTO realiza (filho, tarefa, data_conclusao, supervisor) VALUES (%s, %s, %s, %s);")
-		data = (json["filho"], json["tarefa"], json["data_conclusao"], json["supervisor"])
+		query = ("INSERT INTO assignment (agent, task, deadline_date, supervisor) VALUES (%s, %s, %s, %s);")
+		data = (json["agent"], json["task"], json["deadline_date"], json["supervisor"])
 
 		# Execute and return
 		cursor.execute(query, data)
@@ -108,9 +108,9 @@ def atribuirTarefa():
 		dbConn.close()
 
 
-# LISTAR TAREFAS POR FILHO
-@app.route('/listarTarefasPorFilho', methods=["POST"])
-def listarTarefas():
+# LISTAR taskS POR FILHO
+@app.route('/listAssignmentsPerAgent', methods=["POST"])
+def listAssignmentsPerAgent():
 	dbConn = None
 	cursor = None
 	try:
@@ -124,13 +124,13 @@ def listarTarefas():
 				return jsonify({"status": "nok"})
 
 		# Prepare query
-		query = ("SELECT json_agg(tarefas) FROM (SELECT * FROM realiza WHERE filho = %s) as tarefas;")
-		data = (json["filho"],)
+		query = ("SELECT json_agg(tasks) FROM (SELECT * FROM assignment WHERE agent = %s) as tasks;")
+		data = (json["agent"],)
 
 		# Execute and return
 		cursor.execute(query, data)
-		d = str(cursor.fetchone())[1:-1]
-		return jsonify(eval(d))
+		json_response = str(cursor.fetchone())[1:-1]
+		return jsonify(eval(json_response))
 
 	except Exception as e:
 		return jsonify({"status": "nok"})
@@ -140,9 +140,9 @@ def listarTarefas():
 		dbConn.close()
 
 
-# ALTERAR STATUS DE TAREFA
-@app.route('/alterarStatusTarefa', methods=["POST"])
-def alterarStatusTarefa():
+# ALTERAR STATUS DE task
+@app.route('/alterAssignmentStatus', methods=["POST"])
+def alterAssignmentStatus():
 	dbConn=None
 	cursor=None
 
@@ -157,12 +157,12 @@ def alterarStatusTarefa():
 				return jsonify({"status": "nok"})
 
 		# Prepare query
-		query = ("UPDATE realiza SET status = %s WHERE id = %s;")
+		query = ("UPDATE assignment SET status = %s WHERE id = %s;")
 		data = (json["status"], json["id"])
 
 		# Execute and return
 		cursor.execute(query, data)
-		return jsonify({"status": "status da tarefa alterado!"})
+		return jsonify({"status": "success!"})
 
 	except Exception as e:
 		return jsonify({"status": "nok"})
@@ -174,8 +174,8 @@ def alterarStatusTarefa():
 
 
 # LISTAR PONTUACAO
-@app.route('/listarPontuacao', methods=["GET"])
-def listarPontuacao():
+@app.route('/listScores', methods=["GET"])
+def listScores():
 	dbConn = None
 	cursor = None
 	try:
@@ -184,11 +184,12 @@ def listarPontuacao():
 		cursor = dbConn.cursor(cursor_factory=psycopg2.extras.DictCursor)
 
 		# Prepare query
-		query = ("SELECT json_agg(pontos) FROM (SELECT nome, pontuacao from filho ORDER BY pontuacao DESC) as pontos;")
+		query = ("SELECT json_agg(scores) FROM (SELECT name, score from agent ORDER BY score DESC) as scores;")
 
 		# Execute and return
 		cursor.execute(query)
-		return jsonify(cursor.fetchone())
+		json_response = str(cursor.fetchone())[1:-1]
+		return jsonify(eval(json_response))
 
 	except Exception as e:
 		return jsonify({"status": "nok"})
