@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2225249825A87E0A0091A0EA /* AssignmentListHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2225249725A87E0A0091A0EA /* AssignmentListHeader.swift */; };
+		2230107225A8E10C0073BFB1 /* LoginScreenHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2230107125A8E10C0073BFB1 /* LoginScreenHeader.swift */; };
+		2230107625A8E1F30073BFB1 /* FamilyGrid.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2230107525A8E1F30073BFB1 /* FamilyGrid.swift */; };
 		2258651325A774BF0098EDB2 /* RefreshableScrollView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2258651225A774BF0098EDB2 /* RefreshableScrollView.swift */; };
 		2258651B25A7959A0098EDB2 /* NewsCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2258651A25A7959A0098EDB2 /* NewsCard.swift */; };
 		2258651E25A795B80098EDB2 /* NewsList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2258651D25A795B80098EDB2 /* NewsList.swift */; };
@@ -29,6 +32,9 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		2225249725A87E0A0091A0EA /* AssignmentListHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AssignmentListHeader.swift; sourceTree = "<group>"; };
+		2230107125A8E10C0073BFB1 /* LoginScreenHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginScreenHeader.swift; sourceTree = "<group>"; };
+		2230107525A8E1F30073BFB1 /* FamilyGrid.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FamilyGrid.swift; sourceTree = "<group>"; };
 		2258651225A774BF0098EDB2 /* RefreshableScrollView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RefreshableScrollView.swift; sourceTree = "<group>"; };
 		2258651A25A7959A0098EDB2 /* NewsCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsCard.swift; sourceTree = "<group>"; };
 		2258651D25A795B80098EDB2 /* NewsList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsList.swift; sourceTree = "<group>"; };
@@ -63,13 +69,16 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		2258650B25A770FC0098EDB2 /* Functions */ = {
+		2258650B25A770FC0098EDB2 /* Helpers */ = {
 			isa = PBXGroup;
 			children = (
+				22A6CA60259DF1A900FA81AD /* PersonThumbnail.swift */,
+				22A6CA57259DE9B400FA81AD /* PersonImage.swift */,
 				2258651225A774BF0098EDB2 /* RefreshableScrollView.swift */,
 			);
-			path = Functions;
+			path = Helpers;
 			sourceTree = "<group>";
+			usesTabs = 0;
 		};
 		2258651925A7956D0098EDB2 /* Supervisor */ = {
 			isa = PBXGroup;
@@ -87,6 +96,7 @@
 				22A6CA54259DE64E00FA81AD /* Login */,
 				22A6CA53259DE5FF00FA81AD /* Agent */,
 				2258651925A7956D0098EDB2 /* Supervisor */,
+				2258650B25A770FC0098EDB2 /* Helpers */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -108,6 +118,7 @@
 			isa = PBXGroup;
 			children = (
 				22A6CA3D259DDE3700FA81AD /* AssignmentList.swift */,
+				2225249725A87E0A0091A0EA /* AssignmentListHeader.swift */,
 				22A6CA40259DDE5B00FA81AD /* AssignmentCard.swift */,
 			);
 			path = Agent;
@@ -117,8 +128,8 @@
 			isa = PBXGroup;
 			children = (
 				22A6CA5B259DE9F500FA81AD /* LoginScreen.swift */,
-				22A6CA60259DF1A900FA81AD /* PersonThumbnail.swift */,
-				22A6CA57259DE9B400FA81AD /* PersonImage.swift */,
+				2230107125A8E10C0073BFB1 /* LoginScreenHeader.swift */,
+				2230107525A8E1F30073BFB1 /* FamilyGrid.swift */,
 			);
 			path = Login;
 			sourceTree = "<group>";
@@ -153,7 +164,6 @@
 				22A826FC259CD95C004959AC /* TarefasFlixApp.swift */,
 				22A6CA43259DDEAB00FA81AD /* Views */,
 				22A6CA48259DDEFA00FA81AD /* Model */,
-				2258650B25A770FC0098EDB2 /* Functions */,
 				22A6CA68259DF26600FA81AD /* Resources */,
 				22A82700259CD95C004959AC /* Assets.xcassets */,
 				22A82705259CD95C004959AC /* Info.plist */,
@@ -243,16 +253,19 @@
 				22A6CA46259DDEE000FA81AD /* Assignment.swift in Sources */,
 				22A6CA41259DDE5B00FA81AD /* AssignmentCard.swift in Sources */,
 				2258651E25A795B80098EDB2 /* NewsList.swift in Sources */,
+				2230107625A8E1F30073BFB1 /* FamilyGrid.swift in Sources */,
 				2258652125A796890098EDB2 /* News.swift in Sources */,
 				2273D88025A2320F0002D0AA /* AssignmentsFetcher.swift in Sources */,
 				22A6CA61259DF1A900FA81AD /* PersonThumbnail.swift in Sources */,
 				22A6CA5C259DE9F500FA81AD /* LoginScreen.swift in Sources */,
 				22A6CA64259DF1ED00FA81AD /* Person.swift in Sources */,
+				2230107225A8E10C0073BFB1 /* LoginScreenHeader.swift in Sources */,
 				22A6CA3E259DDE3700FA81AD /* AssignmentList.swift in Sources */,
 				2258651B25A7959A0098EDB2 /* NewsCard.swift in Sources */,
 				2258652525A796940098EDB2 /* NewsFetcher.swift in Sources */,
 				22A826FF259CD95C004959AC /* ContentView.swift in Sources */,
 				22A826FD259CD95C004959AC /* TarefasFlixApp.swift in Sources */,
+				2225249825A87E0A0091A0EA /* AssignmentListHeader.swift in Sources */,
 				22A6CA58259DE9B400FA81AD /* PersonImage.swift in Sources */,
 				22A6CA70259DF47500FA81AD /* FamilyLoader.swift in Sources */,
 				2258651325A774BF0098EDB2 /* RefreshableScrollView.swift in Sources */,

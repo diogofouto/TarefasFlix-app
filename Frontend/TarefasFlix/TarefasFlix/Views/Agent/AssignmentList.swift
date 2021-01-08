@@ -11,41 +11,19 @@ struct AssignmentList: View {
     @ObservedObject var fetcher = AssignmentsFetcher("Diogo")
     
     var body: some View {
-        GeometryReader { geometry in
-            HStack {
-                Text("Tarefas")
-                    .font(.title)
-                    .bold()
-                Spacer()
-                Menu {
-                    Button {
-                    } label: {
-                        Text("Mudar de utilizador")
+        NavigationView {
+            VStack {
+                AssignmentListHeader(fetcher: fetcher)
+                ScrollView {
+                    ForEach(fetcher.assignments) { assignment in
+                        AssignmentCard(assignment: assignment)
                     }
-                    Button {
-                    } label: {
-                        Text("Quero mais!")
-                    }
-                } label: {
-                    PersonImage(name: fetcher.agent, width1: 45, height1: 70)
                 }
-                .offset(y: -105)
+                .frame(height: 700)
             }
-            .padding()
-            .offset(y: -120)
-            RefreshableScrollView(width: geometry.size.width, height: geometry.size.height, handlePullToRefresh: {
-                    self.fetcher.load()
-                })
-            {
-                ForEach(fetcher.assignments) { assignment in
-                    AssignmentCard(assignment: assignment)
-                }
-                .offset(y: -100)
-            }
-            .offset(y: -100)
         }
+        .navigationBarHidden(true)
         .padding()
-        .navigationBarBackButtonHidden(true)
     }
 }
 
