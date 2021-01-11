@@ -8,22 +8,28 @@
 import SwiftUI
 
 struct AssignmentList: View {
-    @ObservedObject var fetcher = AssignmentsFetcher("Diogo")
+    @ObservedObject var handler = AssignmentsHandler("Diogo")
     
     var body: some View {
         NavigationView {
             VStack {
-                AssignmentListHeader(fetcher: fetcher)
+                AssignmentListHeader(handler: handler)
                 ScrollView {
-                    ForEach(fetcher.assignments) { assignment in
+                    Spacer()
+                        .frame(height: 15)
+                    ForEach(handler.assignments) { assignment in
                         AssignmentCard(assignment: assignment)
                     }
+                    Spacer()
+                        .frame(height: 15)
                 }
-                .frame(height: 700)
+                .padding([.leading, .trailing])
+                AssignmentListFooter(handler: handler)
             }
+            .navigationBarHidden(true)
+            .frame(height: 1030)
         }
         .navigationBarHidden(true)
-        .padding()
     }
 }
 

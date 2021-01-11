@@ -14,7 +14,8 @@ struct LoginScreen: View {
                 LoginScreenHeader()
                 FamilyGrid()
             }
-            .offset(y: -70)
+            .offset(y: -25)
+            .navigationBarHidden(true)
         }
         .navigationBarHidden(true)
     }

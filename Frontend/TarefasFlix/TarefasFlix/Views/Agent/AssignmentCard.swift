@@ -13,6 +13,7 @@ struct AssignmentCard: View {
     var body: some View {
         Menu {
             Button {
+                AssignmentsHandler.finishAssignment(assignment.id)
             } label: {
                 Text("Acabei a tarefa!")
                 Image(systemName: "checkmark")
@@ -50,7 +51,7 @@ struct AssignmentCard: View {
             .cornerRadius(20)
             .overlay(
                 RoundedRectangle(cornerRadius: 20)
-                    .stroke(Color(.sRGB, red: 150/255, green: 150/255, blue: 150/255,
+                    .stroke(Color(.sRGB, red: 200/255, green: 200/255, blue: 200/255,
                                   opacity: 0.5), lineWidth: 1)
                     .shadow(radius: 3)
             )
@@ -83,8 +84,8 @@ struct AssignmentCard: View {
 }
 
 struct AssignmentCard_Previews: PreviewProvider {
-    @ObservedObject static var fetcher = AssignmentsFetcher("Diogo")
-    static var assignment = fetcher.assignments[0]
+    @ObservedObject static var handler = AssignmentsHandler("Diogo")
+    static var assignment = handler.assignments[0]
     static var previews: some View {
         AssignmentCard(assignment: assignment)
     }

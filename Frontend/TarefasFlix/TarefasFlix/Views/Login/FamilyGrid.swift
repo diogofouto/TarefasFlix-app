@@ -17,8 +17,8 @@ struct FamilyGrid: View {
             ForEach(family) { person in
                 // If agent, show assignments
                 if (person.position == "agent") {
-                    let fetcher = AssignmentsFetcher(person.name)
-                    NavigationLink(destination: AssignmentList(fetcher: fetcher)) {
+                    let handler = AssignmentsHandler(person.name)
+                    NavigationLink(destination: AssignmentList(handler: handler)) {
                         PersonThumbnail(name: person.name)
                             .padding()
                     }

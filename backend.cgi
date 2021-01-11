@@ -141,7 +141,7 @@ def listAssignmentsPerAgent():
 
 
 # ALTERAR STATUS DE task
-@app.route('/alterAssignmentStatus', methods=["POST"])
+@app.route('/finishAssignment', methods=["POST"])
 def alterAssignmentStatus():
 	dbConn=None
 	cursor=None
@@ -157,8 +157,8 @@ def alterAssignmentStatus():
 				return jsonify({"status": "nok"})
 
 		# Prepare query
-		query = ("UPDATE assignment SET status = %s WHERE id = %s;")
-		data = (json["status"], json["id"])
+		query = ("UPDATE assignment SET status = 'feito' WHERE id = %s;")
+		data = (json["id"],)
 
 		# Execute and return
 		cursor.execute(query, data)

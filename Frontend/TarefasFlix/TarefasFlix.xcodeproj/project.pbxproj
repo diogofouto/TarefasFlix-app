@@ -15,7 +15,9 @@
 		2258651E25A795B80098EDB2 /* NewsList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2258651D25A795B80098EDB2 /* NewsList.swift */; };
 		2258652125A796890098EDB2 /* News.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2258652025A796890098EDB2 /* News.swift */; };
 		2258652525A796940098EDB2 /* NewsFetcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2258652425A796940098EDB2 /* NewsFetcher.swift */; };
-		2273D88025A2320F0002D0AA /* AssignmentsFetcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2273D87F25A2320F0002D0AA /* AssignmentsFetcher.swift */; };
+		2266CDC825ACBC18003A39EA /* AssignmentListFooter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2266CDC725ACBC18003A39EA /* AssignmentListFooter.swift */; };
+		226BB22225ACCDAB002CF72A /* ScoreScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 226BB22125ACCDAB002CF72A /* ScoreScreen.swift */; };
+		2273D88025A2320F0002D0AA /* AssignmentsHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2273D87F25A2320F0002D0AA /* AssignmentsHandler.swift */; };
 		22A6CA3E259DDE3700FA81AD /* AssignmentList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22A6CA3D259DDE3700FA81AD /* AssignmentList.swift */; };
 		22A6CA41259DDE5B00FA81AD /* AssignmentCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22A6CA40259DDE5B00FA81AD /* AssignmentCard.swift */; };
 		22A6CA46259DDEE000FA81AD /* Assignment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22A6CA45259DDEE000FA81AD /* Assignment.swift */; };
@@ -40,7 +42,9 @@
 		2258651D25A795B80098EDB2 /* NewsList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsList.swift; sourceTree = "<group>"; };
 		2258652025A796890098EDB2 /* News.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = News.swift; sourceTree = "<group>"; };
 		2258652425A796940098EDB2 /* NewsFetcher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsFetcher.swift; sourceTree = "<group>"; };
-		2273D87F25A2320F0002D0AA /* AssignmentsFetcher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AssignmentsFetcher.swift; sourceTree = "<group>"; };
+		2266CDC725ACBC18003A39EA /* AssignmentListFooter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AssignmentListFooter.swift; sourceTree = "<group>"; };
+		226BB22125ACCDAB002CF72A /* ScoreScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScoreScreen.swift; sourceTree = "<group>"; };
+		2273D87F25A2320F0002D0AA /* AssignmentsHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AssignmentsHandler.swift; sourceTree = "<group>"; };
 		22A6CA3D259DDE3700FA81AD /* AssignmentList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AssignmentList.swift; sourceTree = "<group>"; };
 		22A6CA40259DDE5B00FA81AD /* AssignmentCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AssignmentCard.swift; sourceTree = "<group>"; };
 		22A6CA45259DDEE000FA81AD /* Assignment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Assignment.swift; sourceTree = "<group>"; };
@@ -89,10 +93,20 @@
 			path = Supervisor;
 			sourceTree = "<group>";
 		};
+		226BB22925ACD2B5002CF72A /* Backend Connection */ = {
+			isa = PBXGroup;
+			children = (
+				2273D87F25A2320F0002D0AA /* AssignmentsHandler.swift */,
+				2258652425A796940098EDB2 /* NewsFetcher.swift */,
+			);
+			path = "Backend Connection";
+			sourceTree = "<group>";
+		};
 		22A6CA43259DDEAB00FA81AD /* Views */ = {
 			isa = PBXGroup;
 			children = (
 				22A826FE259CD95C004959AC /* ContentView.swift */,
+				226BB22125ACCDAB002CF72A /* ScoreScreen.swift */,
 				22A6CA54259DE64E00FA81AD /* Login */,
 				22A6CA53259DE5FF00FA81AD /* Agent */,
 				2258651925A7956D0098EDB2 /* Supervisor */,
@@ -105,11 +119,9 @@
 			isa = PBXGroup;
 			children = (
 				22A6CA63259DF1ED00FA81AD /* Person.swift */,
-				22A6CA6F259DF47500FA81AD /* FamilyLoader.swift */,
 				22A6CA45259DDEE000FA81AD /* Assignment.swift */,
-				2273D87F25A2320F0002D0AA /* AssignmentsFetcher.swift */,
 				2258652025A796890098EDB2 /* News.swift */,
-				2258652425A796940098EDB2 /* NewsFetcher.swift */,
+				22A6CA6F259DF47500FA81AD /* FamilyLoader.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -118,8 +130,9 @@
 			isa = PBXGroup;
 			children = (
 				22A6CA3D259DDE3700FA81AD /* AssignmentList.swift */,
-				2225249725A87E0A0091A0EA /* AssignmentListHeader.swift */,
 				22A6CA40259DDE5B00FA81AD /* AssignmentCard.swift */,
+				2225249725A87E0A0091A0EA /* AssignmentListHeader.swift */,
+				2266CDC725ACBC18003A39EA /* AssignmentListFooter.swift */,
 			);
 			path = Agent;
 			sourceTree = "<group>";
@@ -164,6 +177,7 @@
 				22A826FC259CD95C004959AC /* TarefasFlixApp.swift */,
 				22A6CA43259DDEAB00FA81AD /* Views */,
 				22A6CA48259DDEFA00FA81AD /* Model */,
+				226BB22925ACD2B5002CF72A /* Backend Connection */,
 				22A6CA68259DF26600FA81AD /* Resources */,
 				22A82700259CD95C004959AC /* Assets.xcassets */,
 				22A82705259CD95C004959AC /* Info.plist */,
@@ -250,15 +264,17 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				226BB22225ACCDAB002CF72A /* ScoreScreen.swift in Sources */,
 				22A6CA46259DDEE000FA81AD /* Assignment.swift in Sources */,
 				22A6CA41259DDE5B00FA81AD /* AssignmentCard.swift in Sources */,
 				2258651E25A795B80098EDB2 /* NewsList.swift in Sources */,
 				2230107625A8E1F30073BFB1 /* FamilyGrid.swift in Sources */,
 				2258652125A796890098EDB2 /* News.swift in Sources */,
-				2273D88025A2320F0002D0AA /* AssignmentsFetcher.swift in Sources */,
+				2273D88025A2320F0002D0AA /* AssignmentsHandler.swift in Sources */,
 				22A6CA61259DF1A900FA81AD /* PersonThumbnail.swift in Sources */,
 				22A6CA5C259DE9F500FA81AD /* LoginScreen.swift in Sources */,
 				22A6CA64259DF1ED00FA81AD /* Person.swift in Sources */,
+				2266CDC825ACBC18003A39EA /* AssignmentListFooter.swift in Sources */,
 				2230107225A8E10C0073BFB1 /* LoginScreenHeader.swift in Sources */,
 				22A6CA3E259DDE3700FA81AD /* AssignmentList.swift in Sources */,
 				2258651B25A7959A0098EDB2 /* NewsCard.swift in Sources */,
