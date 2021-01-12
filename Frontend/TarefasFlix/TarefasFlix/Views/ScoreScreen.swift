@@ -13,11 +13,48 @@ struct ScoreScreen: View {
     var body: some View {
         NavigationView {
             VStack {
-                AssignmentListHeader(handler: handler)
+                AssignmentListHeader(handler: handler, toggle: false)
                 Spacer()
                 Text("Coming soon!")
                 Spacer()
-                AssignmentListFooter(handler: handler)
+                // AssignmentListFooter
+                VStack {
+                    HStack {
+                        Spacer()
+                        NavigationLink(destination: AssignmentList(handler: handler)) {
+                            Image(systemName: "rectangle.stack.fill")
+                                .resizable()
+                                .frame(width: 30, height: 30)
+                                .padding()
+                                .accentColor(.gray)
+                            
+                        }
+                        Spacer()
+                            .frame(width: 50)
+                        Divider()
+                            .frame(height: 50)
+                        Spacer()
+                            .frame(width: 50)
+                        Image(systemName: "chart.bar.fill")
+                            .resizable()
+                            .frame(width: 30, height: 30)
+                            .padding()
+                            .accentColor(.gray)
+                        Spacer()
+                    }
+                    Spacer()
+                        .frame(height: 100)
+                    
+                }
+                .navigationBarHidden(true)
+                .cornerRadius(20)
+                .overlay(
+                    RoundedRectangle(cornerRadius: 20)
+                        .stroke(Color(.sRGB, red: 200/255, green: 200/255, blue: 200/255,
+                                      opacity: 0.5), lineWidth: 1)
+                        .shadow(radius: 3)
+                    
+                )
             }
             .navigationBarHidden(true)
             .frame(height: 1030)

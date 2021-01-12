@@ -64,7 +64,8 @@ create table news (
   primary key(id),
   foreign key(agent) references agent(name) on delete cascade on update cascade,
   foreign key(supervisor) references supervisor(name) on delete cascade on update cascade,
-  foreign key(task) references task(description) on delete cascade on update cascade
+  foreign key(task) references task(description) on delete cascade on update cascade,
+  check(agent, task, news_date, supervisor, message) unique
 );
 
 

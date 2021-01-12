@@ -14,7 +14,7 @@ struct AssignmentCard: View {
         Menu {
             if assignment.status != "feito" {
                 Button {
-                    AssignmentsHandler.finishAssignment(assignment.id)
+                    //handler.finishAssignment(assignment.id)
                 } label: {
                     Text("Acabei a tarefa!")
                     Image(systemName: "checkmark")

@@ -9,6 +9,7 @@ import SwiftUI
 
 struct AssignmentListHeader: View {
     @ObservedObject var handler = AssignmentsHandler("Diogo")
+    @State var toggle: Bool
     
     var body: some View {
         VStack {
@@ -22,10 +23,8 @@ struct AssignmentListHeader: View {
                 Spacer()
                     .frame(width: 250)
                 Menu {
-                    Button {
-                    } label: {
+                    Toggle(isOn: $toggle) {
                         Text("Mostrar apenas 'Por Fazer'")
-                        Image(systemName: "tortoise")
                     }
                     Button {
                     } label: {
@@ -56,6 +55,6 @@ struct AssignmentListHeader: View {
 
 struct AssignmentListHeader_Previews: PreviewProvider {
     static var previews: some View {
-        AssignmentListHeader()
+        AssignmentListHeader(toggle: false)
     }
 }

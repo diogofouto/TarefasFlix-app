@@ -128,9 +128,15 @@ def finishAssignment():
 		query = ("UPDATE assignment SET status = 'feito' WHERE id = %s;")
 		data = (json["id"],)
 
+		cursor.execute(query, data)
+
+		# Prepare response query
+		query = ("SELECT json_agg(tasks) FROM (SELECT * FROM assignment WHERE agent = (select agent from assignment where id = %s)) as tasks;")
+
 		# Execute and return
 		cursor.execute(query, data)
-		return jsonify({"status": "success!"})
+		json_response = str(cursor.fetchone())[1:-1]
+		return jsonify(eval(json_response))
 
 	except Exception as e:
 		return jsonify({"status": "nok"})
@@ -160,6 +166,16 @@ def complainAssignment():
 		# Prepare query
 		query = ("UPDATE assignment SET status = 'em consideração' WHERE id = %s;")
 		data = (json["id"],)
+
+		cursor.execute(query, data)
+
+		# Prepare response query
+		query = ("SELECT json_agg(tasks) FROM (SELECT * FROM assignment WHERE agent = (select agent from assignment where id = %s)) as tasks;")
+
+		# Execute and return
+		cursor.execute(query, data)
+		json_response = str(cursor.fetchone())[1:-1]
+		return jsonify(eval(json_response))
 
 		# Execute and return
 		cursor.execute(query, data)

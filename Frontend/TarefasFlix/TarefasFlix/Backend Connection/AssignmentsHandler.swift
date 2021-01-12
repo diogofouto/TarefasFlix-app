@@ -7,6 +7,7 @@
 
 import Foundation
 import Combine
+import UIKit
 
 public class AssignmentsHandler: ObservableObject {
     var agent: String
@@ -39,6 +40,10 @@ public class AssignmentsHandler: ObservableObject {
             return
         }
         
+        var backgroundTask = 0
+        backgroundTask = UIApplication.shared.beginBackgroundTask(withName: "BackgroundTask") { UIApplication.shared.endBackgroundTask(UIBackgroundTaskIdentifier(rawValue: backgroundTask))
+        backgroundTask = UIBackgroundTaskIdentifier.invalid.rawValue }.rawValue
+        
         // Send request and get response
         URLSession.shared.dataTask(with: request) {(data, response, error) in
             do {
@@ -48,7 +53,7 @@ public class AssignmentsHandler: ObservableObject {
                        print(JSONString)
                     }
                     let response = try JSONDecoder().decode([Assignment].self, from: d)
-                    DispatchQueue.main.async {
+                    DispatchQueue.main.sync {
                         self.assignments = response
                     }
                 } else {
@@ -60,7 +65,7 @@ public class AssignmentsHandler: ObservableObject {
         }.resume()
     }
     
-    static func finishAssignment(_ id: Int){
+    func finishAssignment(_ id: Int){
         // Prepare POST request
         guard let url = URL(string: "http://web2.ist.utl.pt/ist193705/TarefasFlix/backend.cgi/finishAssignment") else {
             print("Error: invalid API endpoint")
@@ -82,6 +87,10 @@ public class AssignmentsHandler: ObservableObject {
             return
         }
         
+        var backgroundTask = 0
+        backgroundTask = UIApplication.shared.beginBackgroundTask(withName: "BackgroundTask") { UIApplication.shared.endBackgroundTask(UIBackgroundTaskIdentifier(rawValue: backgroundTask))
+        backgroundTask = UIBackgroundTaskIdentifier.invalid.rawValue }.rawValue
+        
         // Send request and get response
         URLSession.shared.dataTask(with: request) {(data, response, error) in
             do {
@@ -90,9 +99,62 @@ public class AssignmentsHandler: ObservableObject {
                     if let JSONString = String(data: d, encoding: String.Encoding.utf8) {
                        print(JSONString)
                     }
+                    let response = try JSONDecoder().decode([Assignment].self, from: d)
+                    DispatchQueue.main.sync {
+                        self.assignments = response
+                    }
                 } else {
-                    print("Status Nok")
+                    print("No Data in response")
                 }
+            } catch {
+                print("caught: \(error)")
+            }
+        }.resume()
+    }
+    
+    func complainAssignment(_ id: Int){
+        // Prepare POST request
+        guard let url = URL(string: "http://web2.ist.utl.pt/ist193705/TarefasFlix/backend.cgi/complainAssignment") else {
+            print("Error: invalid API endpoint")
+            return
+        }
+        var request = URLRequest(url: url)
+        request.httpMethod = "POST"
+        request.setValue("*/*", forHTTPHeaderField: "Accept")
+        request.setValue("application/json", forHTTPHeaderField: "Content-Type")
+        
+        // Create & add JSON to request
+        let postData: [String: Any] = ["id": "\(id)"]
+        let postJson: Data
+        do {
+            postJson = try JSONSerialization.data(withJSONObject: postData)
+            request.httpBody = postJson
+        } catch {
+            print("Error: cannot create JSON from Data")
+            return
+        }
+        
+        var backgroundTask = 0
+        backgroundTask = UIApplication.shared.beginBackgroundTask(withName: "BackgroundTask") { UIApplication.shared.endBackgroundTask(UIBackgroundTaskIdentifier(rawValue: backgroundTask))
+        backgroundTask = UIBackgroundTaskIdentifier.invalid.rawValue }.rawValue
+        
+        // Send request and get response
+        URLSession.shared.dataTask(with: request) {(data, response, error) in
+            do {
+                if let d = data {
+                    // Decode json response and assign tarefas
+                    if let JSONString = String(data: d, encoding: String.Encoding.utf8) {
+                       print(JSONString)
+                    }
+                    let response = try JSONDecoder().decode([Assignment].self, from: d)
+                    DispatchQueue.main.sync {
+                        self.assignments = response
+                    }
+                } else {
+                    print("No Data in response")
+                }
+            } catch {
+                print("caught: \(error)")
             }
         }.resume()
     }
