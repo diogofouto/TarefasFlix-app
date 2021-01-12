@@ -12,16 +12,18 @@ struct AssignmentCard: View {
     
     var body: some View {
         Menu {
-            Button {
-                AssignmentsHandler.finishAssignment(assignment.id)
-            } label: {
-                Text("Acabei a tarefa!")
-                Image(systemName: "checkmark")
-            }
-            Button {
-            } label: {
-                Text("Quero mais!")
-                Image(systemName: "hare")
+            if assignment.status != "feito" {
+                Button {
+                    AssignmentsHandler.finishAssignment(assignment.id)
+                } label: {
+                    Text("Acabei a tarefa!")
+                    Image(systemName: "checkmark")
+                }
+                Button {
+                } label: {
+                    Text("Reclamar")
+                    Image(systemName: "hand.thumbsdown")
+                }
             }
         } label: {
             VStack {

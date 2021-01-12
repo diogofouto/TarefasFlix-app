@@ -46,10 +46,11 @@ create table assignment (
   deadline_date date not null,
   supervisor varchar(50),
   status varchar(15) default 'por fazer'
-  check(status in ('feito', 'por fazer')),
+  check(status in ('feito', 'por fazer', 'em consideração')),
   reward varchar(50),
   primary key(id),
   foreign key(agent) references agent(name) on delete cascade on update cascade,
+  foreign key(supervisor) references supervisor(name) on delete cascade on update cascade,
   foreign key(task) references task(description) on delete cascade on update cascade
 );
 
@@ -57,11 +58,12 @@ create table news (
   id serial,
   agent varchar(50),
   task varchar(50),
-  date date not null default current_date,
+  news_date date not null default current_date,
   supervisor varchar(50),
   message varchar(50),
   primary key(id),
   foreign key(agent) references agent(name) on delete cascade on update cascade,
+  foreign key(supervisor) references supervisor(name) on delete cascade on update cascade,
   foreign key(task) references task(description) on delete cascade on update cascade
 );
 
@@ -90,7 +92,7 @@ for each row execute procedure add_points_proc();
 
 
 -- -------------------------------------------------------------------------------------
--- RI 2 - trigger to send news to supervisor once assignment.status = 'feito'
+-- RI 2 - trigger to send news to supervisor depending on assignment.status
 -- -------------------------------------------------------------------------------------
 drop trigger if exists send_news on assignment;
 
@@ -101,6 +103,8 @@ begin
   -- Se a tarefa estiver feita, incrementar score do agent
   if new.status = 'feito' then
     insert into news (agent, task, supervisor, message) values (new.agent, new.task, new.supervisor, 'Tarefa concluída!');
+  elseif new.status = 'em consideração' then
+    insert into news (agent, task, supervisor, message) values (new.agent, new.task, new.supervisor, 'Houve reclamação!');
   end if;
   return new;
 end

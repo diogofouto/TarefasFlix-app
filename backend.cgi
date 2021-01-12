@@ -108,9 +108,106 @@ def assignTask():
 		dbConn.close()
 
 
+# ALTERAR STATUS DE task
+@app.route('/finishAssignment', methods=["POST"])
+def finishAssignment():
+	dbConn=None
+	cursor=None
+
+	try:
+		# Connect to db
+		dbConn = psycopg2.connect(DB_CONNECTION_STRING)
+		cursor = dbConn.cursor(cursor_factory = psycopg2.extras.DictCursor)
+
+		# Get data
+		json = request.get_json()
+		if len(json) == 0:
+				return jsonify({"status": "nok"})
+
+		# Prepare query
+		query = ("UPDATE assignment SET status = 'feito' WHERE id = %s;")
+		data = (json["id"],)
+
+		# Execute and return
+		cursor.execute(query, data)
+		return jsonify({"status": "success!"})
+
+	except Exception as e:
+		return jsonify({"status": "nok"})
+
+	finally:
+		dbConn.commit()
+		cursor.close()
+		dbConn.close()
+
+
+# ALTERAR STATUS DE task
+@app.route('/complainAssignment', methods=["POST"])
+def complainAssignment():
+	dbConn=None
+	cursor=None
+
+	try:
+		# Connect to db
+		dbConn = psycopg2.connect(DB_CONNECTION_STRING)
+		cursor = dbConn.cursor(cursor_factory = psycopg2.extras.DictCursor)
+
+		# Get data
+		json = request.get_json()
+		if len(json) == 0:
+				return jsonify({"status": "nok"})
+
+		# Prepare query
+		query = ("UPDATE assignment SET status = 'em consideração' WHERE id = %s;")
+		data = (json["id"],)
+
+		# Execute and return
+		cursor.execute(query, data)
+		return jsonify({"status": "success!"})
+
+	except Exception as e:
+		return jsonify({"status": "nok"})
+
+	finally:
+		dbConn.commit()
+		cursor.close()
+		dbConn.close()
+
+
 # LISTAR taskS POR FILHO
-@app.route('/listAssignmentsPerAgent', methods=["POST"])
-def listAssignmentsPerAgent():
+@app.route('/askAssignment', methods=["POST"])
+def askAssignment():
+	dbConn = None
+	cursor = None
+	try:
+		# Connect to db
+		dbConn = psycopg2.connect(DB_CONNECTION_STRING)
+		cursor = dbConn.cursor(cursor_factory=psycopg2.extras.DictCursor)
+
+		# Get data
+		json = request.get_json()
+		if len(json) == 0:
+				return jsonify({"status": "nok"})
+
+		# Prepare query
+		query = ("insert into news (agent, task, supervisor, message) values (%s, %s, %s, 'Quero mais!');")
+		data = (json["agent"], json["task"], json["supervisor"])
+
+		# Execute and return
+		cursor.execute(query, data)
+		return jsonify({"status": "success!"})
+
+	except Exception as e:
+		return jsonify({"status": "nok"})
+
+	finally:
+		cursor.close()
+		dbConn.close()
+
+
+# LISTAR taskS POR FILHO
+@app.route('/listAssignments', methods=["POST"])
+def listAssignments():
 	dbConn = None
 	cursor = None
 	try:
@@ -140,16 +237,15 @@ def listAssignmentsPerAgent():
 		dbConn.close()
 
 
-# ALTERAR STATUS DE task
-@app.route('/finishAssignment', methods=["POST"])
-def alterAssignmentStatus():
-	dbConn=None
-	cursor=None
-
+# LISTAR taskS POR FILHO
+@app.route('/listNews', methods=["POST"])
+def listNews():
+	dbConn = None
+	cursor = None
 	try:
 		# Connect to db
 		dbConn = psycopg2.connect(DB_CONNECTION_STRING)
-		cursor = dbConn.cursor(cursor_factory = psycopg2.extras.DictCursor)
+		cursor = dbConn.cursor(cursor_factory=psycopg2.extras.DictCursor)
 
 		# Get data
 		json = request.get_json()
@@ -157,18 +253,18 @@ def alterAssignmentStatus():
 				return jsonify({"status": "nok"})
 
 		# Prepare query
-		query = ("UPDATE assignment SET status = 'feito' WHERE id = %s;")
-		data = (json["id"],)
+		query = ("SELECT json_agg(list) FROM (SELECT * FROM news WHERE supervisor = %s) as list;")
+		data = (json["supervisor"],)
 
 		# Execute and return
 		cursor.execute(query, data)
-		return jsonify({"status": "success!"})
+		json_response = str(cursor.fetchone())[1:-1]
+		return jsonify(eval(json_response))
 
 	except Exception as e:
 		return jsonify({"status": "nok"})
 
 	finally:
-		dbConn.commit()
 		cursor.close()
 		dbConn.close()
 

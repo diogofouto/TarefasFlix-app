@@ -19,7 +19,7 @@ public class AssignmentsHandler: ObservableObject {
     
     func load(){
         // Prepare POST request
-        guard let url = URL(string: "http://web2.ist.utl.pt/ist193705/TarefasFlix/backend.cgi/listAssignmentsPerAgent") else {
+        guard let url = URL(string: "http://web2.ist.utl.pt/ist193705/TarefasFlix/backend.cgi/listAssignments") else {
             print("Error: invalid API endpoint")
             return
         }

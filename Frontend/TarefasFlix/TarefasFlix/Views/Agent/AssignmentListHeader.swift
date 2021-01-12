@@ -13,7 +13,7 @@ struct AssignmentListHeader: View {
     var body: some View {
         VStack {
             Spacer()
-                .frame(height: 100)
+                .frame(height: 150)
             HStack {
                 Spacer()
                 NavigationLink(destination: LoginScreen()) {
