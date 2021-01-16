@@ -34,6 +34,7 @@ struct AssignmentList: View {
                             .frame(width: 200)
                         Button {
                             handler.load()
+                            handler.load()
                             reload = !reload
                         } label: {
                             Image(systemName: "arrow.2.circlepath")
@@ -74,6 +75,7 @@ struct AssignmentList: View {
                             if assignment.status != "feito" {
                                 Button {
                                     handler.finishAssignment(assignment.id)
+                                    handler.load()
                                     reload = !reload
                                 } label: {
                                     Text("Acabei a tarefa!")
@@ -82,6 +84,7 @@ struct AssignmentList: View {
                                 if assignment.status != "em consideração" {
                                     Button {
                                         handler.complainAssignment(assignment.id)
+                                        handler.load()
                                         reload = !reload
                                     } label: {
                                         Text("Reclamar")
@@ -117,8 +120,7 @@ struct AssignmentList: View {
                             .cornerRadius(20)
                             .overlay(
                                 RoundedRectangle(cornerRadius: 20)
-                                    .stroke(Color(.sRGB, red: 200/255, green: 200/255, blue: 200/255,
-                                                  opacity: 0.5), lineWidth: 1)
+                                    .stroke(Color(.sRGB, red: 200/255, green: 200/255, blue: 200/255, opacity: 0.5), lineWidth: 1)
                                     .shadow(radius: 3)
                             )
                             .padding([.leading, .bottom, .trailing])
@@ -169,10 +171,6 @@ struct AssignmentList: View {
             .frame(height: 1030)
         }
         .navigationBarHidden(true)
-    }
-    
-    func changeAssignmentStatus(id: Int, status: String){
-        reload = !reload
     }
 }
 

@@ -13,6 +13,7 @@ drop table supervisor cascade;
 drop table agent cascade;
 drop table task cascade;
 drop table assignment cascade;
+drop table news cascade;
 
 
 -- -------------------------------------------------------------------------------
@@ -56,16 +57,19 @@ create table assignment (
 
 create table news ( 
   id serial,
+  assignment_id integer,
+  news_date date not null default current_date,
   agent varchar(50),
   task varchar(50),
-  news_date date not null default current_date,
   supervisor varchar(50),
   message varchar(50),
+  status varchar(15) default 'não visto'
+  check(status in ('não visto', 'visto')),
   primary key(id),
   foreign key(agent) references agent(name) on delete cascade on update cascade,
   foreign key(supervisor) references supervisor(name) on delete cascade on update cascade,
   foreign key(task) references task(description) on delete cascade on update cascade,
-  check(agent, task, news_date, supervisor, message) unique
+  foreign key(assignment_id) references assignment(id) on delete cascade on update cascade
 );
 
 
@@ -103,9 +107,9 @@ $$
 begin
   -- Se a tarefa estiver feita, incrementar score do agent
   if new.status = 'feito' then
-    insert into news (agent, task, supervisor, message) values (new.agent, new.task, new.supervisor, 'Tarefa concluída!');
-  elseif new.status = 'em consideração' then
-    insert into news (agent, task, supervisor, message) values (new.agent, new.task, new.supervisor, 'Houve reclamação!');
+    insert into news (assignment_id, agent, task, supervisor, message) values (new.id, new.agent, new.task, new.supervisor, 'Tarefa concluída!');
+  elsif new.status = 'em consideração' then
+    insert into news (assignment_id, agent, task, supervisor, message) values (new.id, new.agent, new.task, new.supervisor, 'Houve reclamação!');
   end if;
   return new;
 end

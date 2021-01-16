@@ -42,7 +42,7 @@ def debug():
 		return jsonify({"status": "nok"})
 
 
-# CRIAR task
+# CRIAR TAREFA
 @app.route('/createTask', methods=["POST"])
 def createTask():
 	dbConn=None
@@ -56,14 +56,14 @@ def createTask():
 		# Get data
 		json = request.get_json()
 		if len(json) == 0:
-				return jsonify({"status": "nok"})
+			return jsonify({"status": "nok"})
 
-		# Prepare query
+		# Execute query
 		query = ("INSERT INTO task (description, difficulty) VALUES (%s, %s);")
 		data = (json["description"], json["difficulty"])
-
-		# Execute and return
 		cursor.execute(query, data)
+
+		# Return success
 		return jsonify({"status": "success!"})
 
 	except Exception as e:
@@ -75,7 +75,7 @@ def createTask():
 		dbConn.close()
 
 
-# ATRIBUIR task
+# ATRIBUIR TAREFA
 @app.route('/assignTask', methods=["POST"])
 def assignTask():
 	dbConn=None
@@ -89,14 +89,14 @@ def assignTask():
 		# Get data
 		json = request.get_json()
 		if len(json) == 0:
-				return jsonify({"status": "nok"})
+			return jsonify({"status": "nok"})
 
-		# Prepare query
+		# Execute query
 		query = ("INSERT INTO assignment (agent, task, deadline_date, supervisor) VALUES (%s, %s, %s, %s);")
 		data = (json["agent"], json["task"], json["deadline_date"], json["supervisor"])
-
-		# Execute and return
 		cursor.execute(query, data)
+
+		# Return success
 		return jsonify({"status": "ok"})
 
 	except Exception as e:
@@ -108,7 +108,7 @@ def assignTask():
 		dbConn.close()
 
 
-# ALTERAR STATUS DE task
+# ACABAR TAREFA
 @app.route('/finishAssignment', methods=["POST"])
 def finishAssignment():
 	dbConn=None
@@ -122,19 +122,18 @@ def finishAssignment():
 		# Get data
 		json = request.get_json()
 		if len(json) == 0:
-				return jsonify({"status": "nok"})
+			return jsonify({"status": "nok"})
 
-		# Prepare query
+		# Execute query
 		query = ("UPDATE assignment SET status = 'feito' WHERE id = %s;")
 		data = (json["id"],)
-
 		cursor.execute(query, data)
 
-		# Prepare response query
-		query = ("SELECT json_agg(tasks) FROM (SELECT * FROM assignment WHERE agent = (select agent from assignment where id = %s)) as tasks;")
-
-		# Execute and return
+		# Response query
+		query = ("SELECT json_agg(tasks) FROM (SELECT * FROM assignment WHERE agent = (select agent from assignment where id = %s) order by id desc) as tasks;")
 		cursor.execute(query, data)
+
+		# Return new assignment list
 		json_response = str(cursor.fetchone())[1:-1]
 		return jsonify(eval(json_response))
 
@@ -147,7 +146,7 @@ def finishAssignment():
 		dbConn.close()
 
 
-# ALTERAR STATUS DE task
+# RECLAMAR TAREFA
 @app.route('/complainAssignment', methods=["POST"])
 def complainAssignment():
 	dbConn=None
@@ -161,25 +160,20 @@ def complainAssignment():
 		# Get data
 		json = request.get_json()
 		if len(json) == 0:
-				return jsonify({"status": "nok"})
+			return jsonify({"status": "nok"})
 
-		# Prepare query
+		# Execute query
 		query = ("UPDATE assignment SET status = 'em consideração' WHERE id = %s;")
 		data = (json["id"],)
-
 		cursor.execute(query, data)
 
-		# Prepare response query
-		query = ("SELECT json_agg(tasks) FROM (SELECT * FROM assignment WHERE agent = (select agent from assignment where id = %s)) as tasks;")
-
-		# Execute and return
+		# Response query
+		query = ("SELECT json_agg(tasks) FROM (SELECT * FROM assignment WHERE agent = (select agent from assignment where id = %s) order by id desc) as tasks;")
 		cursor.execute(query, data)
+
+		# Return new assignment list
 		json_response = str(cursor.fetchone())[1:-1]
 		return jsonify(eval(json_response))
-
-		# Execute and return
-		cursor.execute(query, data)
-		return jsonify({"status": "success!"})
 
 	except Exception as e:
 		return jsonify({"status": "nok"})
@@ -190,38 +184,7 @@ def complainAssignment():
 		dbConn.close()
 
 
-# LISTAR taskS POR FILHO
-@app.route('/askAssignment', methods=["POST"])
-def askAssignment():
-	dbConn = None
-	cursor = None
-	try:
-		# Connect to db
-		dbConn = psycopg2.connect(DB_CONNECTION_STRING)
-		cursor = dbConn.cursor(cursor_factory=psycopg2.extras.DictCursor)
-
-		# Get data
-		json = request.get_json()
-		if len(json) == 0:
-				return jsonify({"status": "nok"})
-
-		# Prepare query
-		query = ("insert into news (agent, task, supervisor, message) values (%s, %s, %s, 'Quero mais!');")
-		data = (json["agent"], json["task"], json["supervisor"])
-
-		# Execute and return
-		cursor.execute(query, data)
-		return jsonify({"status": "success!"})
-
-	except Exception as e:
-		return jsonify({"status": "nok"})
-
-	finally:
-		cursor.close()
-		dbConn.close()
-
-
-# LISTAR taskS POR FILHO
+# LISTAR TAREFAS POR FILHO
 @app.route('/listAssignments', methods=["POST"])
 def listAssignments():
 	dbConn = None
@@ -234,14 +197,14 @@ def listAssignments():
 		# Get data
 		json = request.get_json()
 		if len(json) == 0:
-				return jsonify({"status": "nok"})
+			return jsonify({"status": "nok"})
 
-		# Prepare query
-		query = ("SELECT json_agg(tasks) FROM (SELECT * FROM assignment WHERE agent = %s) as tasks;")
+		# Execute query
+		query = ("SELECT json_agg(tasks) FROM (SELECT * FROM assignment WHERE agent = %s order by id desc) as tasks;")
 		data = (json["agent"],)
-
-		# Execute and return
 		cursor.execute(query, data)
+
+		# Return assignments list
 		json_response = str(cursor.fetchone())[1:-1]
 		return jsonify(eval(json_response))
 
@@ -253,7 +216,7 @@ def listAssignments():
 		dbConn.close()
 
 
-# LISTAR taskS POR FILHO
+# LISTAR NOTICIAS POR SUPERVISOR
 @app.route('/listNews', methods=["POST"])
 def listNews():
 	dbConn = None
@@ -266,14 +229,134 @@ def listNews():
 		# Get data
 		json = request.get_json()
 		if len(json) == 0:
-				return jsonify({"status": "nok"})
+			return jsonify({"status": "nok"})
 
-		# Prepare query
-		query = ("SELECT json_agg(list) FROM (SELECT * FROM news WHERE supervisor = %s) as list;")
+		# Execute query
+		query = ("SELECT json_agg(list) FROM (SELECT * FROM news WHERE supervisor = %s order by id desc) as list;")
 		data = (json["supervisor"],)
-
-		# Execute and return
 		cursor.execute(query, data)
+
+		# Return news list
+		json_response = str(cursor.fetchone())[1:-1]
+		return jsonify(eval(json_response))
+
+	except Exception as e:
+		return jsonify({"status": "nok"})
+
+	finally:
+		cursor.close()
+		dbConn.close()
+
+
+# MARCAR NOTICIA COMO LIDA
+@app.route('/checkNews', methods=["POST"])
+def checkNews():
+	dbConn = None
+	cursor = None
+	try:
+		# Connect to db
+		dbConn = psycopg2.connect(DB_CONNECTION_STRING)
+		cursor = dbConn.cursor(cursor_factory=psycopg2.extras.DictCursor)
+
+		# Get data
+		json = request.get_json()
+		if len(json) == 0:
+			return jsonify({"status": "nok"})
+
+		# Check news
+		query = ("UPDATE news SET status = 'visto' WHERE id = %s;")
+		data = (json["id"],)
+		cursor.execute(query, data)
+
+		# Response query
+		query = ("SELECT json_agg(list) FROM (SELECT * FROM news WHERE supervisor = (select supervisor from news where id = %s) order by id desc) as list;")
+		cursor.execute(query, data)
+
+		# Return new news list
+		json_response = str(cursor.fetchone())[1:-1]
+		return jsonify(eval(json_response))
+
+	except Exception as e:
+		return jsonify({"status": "nok"})
+
+	finally:
+		cursor.close()
+		dbConn.close()
+
+
+# FORÇAR TAREFA
+@app.route('/forceAssignment', methods=["POST"])
+def forceAssignment():
+	dbConn = None
+	cursor = None
+	try:
+		# Connect to db
+		dbConn = psycopg2.connect(DB_CONNECTION_STRING)
+		cursor = dbConn.cursor(cursor_factory=psycopg2.extras.DictCursor)
+
+		# Get data
+		json = request.get_json()
+		if len(json) == 0:
+			return jsonify({"status": "nok"})
+
+		# Force assignment
+		query = ("UPDATE assignment SET status = 'por fazer' WHERE id = %s;")
+		data = (json["assignment_id"],)
+		cursor.execute(query, data)
+
+		# Check news
+		query = ("UPDATE news SET status = 'visto' WHERE id = %s;")
+		data = (json["news_id"],)
+		cursor.execute(query, data)
+
+		# Response
+		query = ("SELECT json_agg(list) FROM (SELECT * FROM news WHERE supervisor = (select supervisor from news where id = %s) order by id desc) as list;")
+		data = (json["news_id"],)
+		cursor.execute(query, data)
+
+		# Return new news list
+		json_response = str(cursor.fetchone())[1:-1]
+		return jsonify(eval(json_response))
+
+	except Exception as e:
+		return jsonify({"status": "nok"})
+
+	finally:
+		cursor.close()
+		dbConn.close()
+
+
+# ESQUECER TAREFA
+@app.route('/forgetAssignment', methods=["POST"])
+def forgetAssignment():
+	dbConn = None
+	cursor = None
+	try:
+		# Connect to db
+		dbConn = psycopg2.connect(DB_CONNECTION_STRING)
+		cursor = dbConn.cursor(cursor_factory=psycopg2.extras.DictCursor)
+
+		# Get data
+		json = request.get_json()
+		if len(json) == 0:
+			return jsonify({"status": "nok"})
+
+		# Forget assignment
+		query = ("DELETE FROM assignment WHERE id = %s;")
+		data = (json["assignment_id"],)
+		cursor.execute(query, data)
+
+		# Check news
+		query = ("UPDATE news SET status = 'visto' WHERE id = %s;")
+		data = (json["news_id"],)
+		cursor.execute(query, data)
+
+		# Response
+		query = ("SELECT json_agg(list) FROM (SELECT * FROM news WHERE supervisor = (select supervisor from news where id = %s) order by id desc) as list;")
+		data = (json["news_id"],)
+		cursor.execute(query, data)
+
+		# Return new news list
 		json_response = str(cursor.fetchone())[1:-1]
 		return jsonify(eval(json_response))
 
@@ -295,11 +378,11 @@ def listScores():
 		dbConn = psycopg2.connect(DB_CONNECTION_STRING)
 		cursor = dbConn.cursor(cursor_factory=psycopg2.extras.DictCursor)
 
-		# Prepare query
+		# Execute query
 		query = ("SELECT json_agg(scores) FROM (SELECT name, score from agent ORDER BY score DESC) as scores;")
-
-		# Execute and return
 		cursor.execute(query)
+
+		# Return scores
 		json_response = str(cursor.fetchone())[1:-1]
 		return jsonify(eval(json_response))
 

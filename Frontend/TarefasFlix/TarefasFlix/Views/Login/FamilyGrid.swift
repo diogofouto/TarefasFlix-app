@@ -25,8 +25,8 @@ struct FamilyGrid: View {
                 }
                 // If supervisor, show news
                 else {
-                    let fetcher = NewsFetcher(person.name)
-                    NavigationLink(destination: NewsList(fetcher: fetcher)) {
+                    let handler = NewsHandler(person.name)
+                    NavigationLink(destination: NewsList(handler: handler)) {
                         PersonThumbnail(name: person.name)
                             .padding()
                     }
