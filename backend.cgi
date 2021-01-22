@@ -76,8 +76,8 @@ def createTask():
 
 
 # ATRIBUIR TAREFA
-@app.route('/assignTask', methods=["POST"])
-def assignTask():
+@app.route('/createAssignment', methods=["POST"])
+def createAssignment():
 	dbConn=None
 	cursor=None
 
@@ -92,8 +92,8 @@ def assignTask():
 			return jsonify({"status": "nok"})
 
 		# Execute query
-		query = ("INSERT INTO assignment (agent, task, deadline_date, supervisor) VALUES (%s, %s, %s, %s);")
-		data = (json["agent"], json["task"], json["deadline_date"], json["supervisor"])
+		query = ("INSERT INTO assignment (agent, task, start_date, deadline_date, supervisor, reward) VALUES (%s, %s, %s, %s, %s, %s);")
+		data = (json["agent"], json["task"], json["start_date"], json["deadline_date"], json["supervisor"], json["reward"])
 		cursor.execute(query, data)
 
 		# Return success

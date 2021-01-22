@@ -32,6 +32,7 @@ create table agent (
   primary key(name)
 );
 
+
 create table task ( 
   description varchar(50),
   difficulty integer
@@ -48,11 +49,10 @@ create table assignment (
   supervisor varchar(50),
   status varchar(15) default 'por fazer'
   check(status in ('feito', 'por fazer', 'em consideração')),
-  reward varchar(50),
+  reward varchar(50) default 'null',
   primary key(id),
   foreign key(agent) references agent(name) on delete cascade on update cascade,
-  foreign key(supervisor) references supervisor(name) on delete cascade on update cascade,
-  foreign key(task) references task(description) on delete cascade on update cascade
+  foreign key(supervisor) references supervisor(name) on delete cascade on update cascade
 );
 
 create table news ( 
@@ -68,7 +68,6 @@ create table news (
   primary key(id),
   foreign key(agent) references agent(name) on delete cascade on update cascade,
   foreign key(supervisor) references supervisor(name) on delete cascade on update cascade,
-  foreign key(task) references task(description) on delete cascade on update cascade,
   foreign key(assignment_id) references assignment(id) on delete cascade on update cascade
 );
 
@@ -85,7 +84,7 @@ begin
 	-- Se a tarefa estiver feita, incrementar score do agent
   if new.status = 'feito' then
     update agent
-    set score = score + (select difficulty from task where new.task = task.description)
+    set score = score + 1 --(select difficulty from task where new.task = task.description)
     where agent.name = new.agent;
   end if;
   return new;

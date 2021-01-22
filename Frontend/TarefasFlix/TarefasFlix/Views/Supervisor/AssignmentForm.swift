@@ -15,16 +15,47 @@ struct AssignmentForm: View {
     @State var deadline_date: Date = Date()
     @State var reward: String = ""
     
+    @ObservedObject var handler: NewsHandler
+    var family: [Person] {
+        FamilyLoader().family.filter { person in
+            (person.name != "Mãe" && person.name != "Pai")
+        }
+    }
+    
+    @State var isCreated = false
+    
     var body: some View {
         NavigationView {
-            VStack {
+            ZStack {
+                Color(.sRGB, red: 240/255, green: 240/255, blue: 246/255)
+                    .ignoresSafeArea()
+                
+                // Form
                 Form {
                     Section(header: Text("Tarefa")) {
                         TextField("Descrição", text: $task)
-                        TextField("Dificuldade", text: $difficulty)
+                        //TextField("Dificuldade", text: $difficulty)
                     }
                     Section(header: Text("Filho")) {
-                        TextField("Nome", text: $agent)
+                        Menu {
+                            ForEach(family) { person in
+                                Button {
+                                    agent = person.name
+                                } label: {
+                                    Text(person.name)
+                                        .foregroundColor(Color(.sRGB, red: 190/255, green: 190/255, blue: 190/255))
+                                }
+                            }
+                        } label: {
+                            if agent == "" {
+                                TextField("Nome", text: $agent)
+                                    .foregroundColor(Color(.sRGB, red: 190/255, green: 190/255, blue: 190/255))
+                            }
+                            else {
+                                TextField("\(agent)", text: $agent)
+                                    .foregroundColor(.black)
+                            }
+                        }
                     }
                     Section(header: Text("Datas")) {
                         DatePicker(selection: $start_date, in: Date()..., displayedComponents: .date) {
@@ -40,12 +71,19 @@ struct AssignmentForm: View {
                         TextField("Opcional", text: $reward)
                     }
                 }
+                .padding()
+                .offset(y: 70)
                 .navigationBarHidden(true)
-                .frame(height:1000)
-                .offset(y: 150)
+
+                // Title
+                Text("Atribuir Tarefa")
+                    .font(.title)
+                    .fontWeight(.bold)
+                    .offset(y: -340)
+
                 // Buttons
                 HStack {
-                    NavigationLink(destination: ScoreScreen()) {
+                    NavigationLink(destination: NewsList(handler: handler)) {
                         Image(systemName: "trash")
                             .resizable()
                             .frame(width: 30, height: 30)
@@ -62,25 +100,29 @@ struct AssignmentForm: View {
                     }
                     Spacer()
                         .frame(width: 110)
-                    NavigationLink(destination: ScoreScreen()) {
-                        Image(systemName: "paperplane")
-                            .resizable()
-                            .frame(width: 30, height: 30)
-                            .padding()
-                            .background(Color(.sRGB, red: 0/255, green: 210/255, blue: 0/255))
-                            .foregroundColor(.white)
-                            .cornerRadius(100)
-                            .overlay(
-                                RoundedRectangle(cornerRadius: 100)
-                                    .stroke(Color(.sRGB, red: 200/255, green: 200/255, blue: 200/255,
-                                                  opacity: 0.5), lineWidth: 1)
-                                    .shadow(radius: 5)
-                            )
+                    NavigationLink(destination: NewsList(handler: handler), isActive: $isCreated) {
+                        Button {
+                            handler.createAssignment(task: task, agent: agent, start_date: start_date, deadline_date: deadline_date, reward: reward)
+                            self.isCreated = true
+                        } label: {
+                            Image(systemName: "paperplane")
+                                .resizable()
+                                .frame(width: 30, height: 30)
+                                .padding()
+                                .background(Color(.sRGB, red: 0/255, green: 210/255, blue: 0/255))
+                                .foregroundColor(.white)
+                                .cornerRadius(100)
+                                .overlay(
+                                    RoundedRectangle(cornerRadius: 100)
+                                        .stroke(Color(.sRGB, red: 200/255, green: 200/255, blue: 200/255,
+                                                      opacity: 0.5), lineWidth: 1)
+                                        .shadow(radius: 5)
+                                )
+                        }
                     }
                 }
-                .background(Color(.sRGB, red: 240/255, green: 240/255, blue: 246/255))
+                .offset(y: 300)
                 .navigationBarHidden(true)
-                .offset(y: -160)
             }
             .navigationBarHidden(true)
         }
@@ -89,7 +131,8 @@ struct AssignmentForm: View {
 }
 
 struct AssignmentForm_Previews: PreviewProvider {
+    @ObservedObject static var handler = NewsHandler("Mãe")
     static var previews: some View {
-        AssignmentForm()
+        AssignmentForm(handler: handler)
     }
 }

@@ -40,10 +40,6 @@ public class AssignmentsHandler: ObservableObject {
             return
         }
         
-        var backgroundTask = 0
-        backgroundTask = UIApplication.shared.beginBackgroundTask(withName: "BackgroundTask") { UIApplication.shared.endBackgroundTask(UIBackgroundTaskIdentifier(rawValue: backgroundTask))
-        backgroundTask = UIBackgroundTaskIdentifier.invalid.rawValue }.rawValue
-        
         // Send request and get response
         URLSession.shared.dataTask(with: request) {(data, response, error) in
             do {
@@ -53,7 +49,7 @@ public class AssignmentsHandler: ObservableObject {
                        print(JSONString)
                     }
                     let response = try JSONDecoder().decode([Assignment].self, from: d)
-                    DispatchQueue.main.async {
+                    DispatchQueue.main.sync {
                         self.assignments = response
                     }
                 } else {
@@ -86,10 +82,6 @@ public class AssignmentsHandler: ObservableObject {
             print("Error: cannot create JSON from Data")
             return
         }
-        
-        var backgroundTask = 0
-        backgroundTask = UIApplication.shared.beginBackgroundTask(withName: "BackgroundTask") { UIApplication.shared.endBackgroundTask(UIBackgroundTaskIdentifier(rawValue: backgroundTask))
-        backgroundTask = UIBackgroundTaskIdentifier.invalid.rawValue }.rawValue
         
         // Send request and get response
         URLSession.shared.dataTask(with: request) {(data, response, error) in
@@ -133,10 +125,6 @@ public class AssignmentsHandler: ObservableObject {
             print("Error: cannot create JSON from Data")
             return
         }
-        
-        var backgroundTask = 0
-        backgroundTask = UIApplication.shared.beginBackgroundTask(withName: "BackgroundTask") { UIApplication.shared.endBackgroundTask(UIBackgroundTaskIdentifier(rawValue: backgroundTask))
-        backgroundTask = UIBackgroundTaskIdentifier.invalid.rawValue }.rawValue
         
         // Send request and get response
         URLSession.shared.dataTask(with: request) {(data, response, error) in

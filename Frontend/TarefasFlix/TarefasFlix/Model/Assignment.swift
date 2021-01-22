@@ -16,5 +16,5 @@ struct Assignment: Hashable, Codable, Identifiable {
     var deadline_date: String
     var supervisor: String
     var status: String
-    var reward: String!
+    var reward: String
 }

@@ -152,15 +152,13 @@ struct NewsList: View {
                         Divider()
                             .padding()
                             .frame(height: 50)
-                        /*
-                        NavigationLink(destination: ScoreScreen(handler: handler)) {
+                        NavigationLink(destination: AssignmentForm(handler: handler)) {
+                            Image(systemName: "plus.circle")
+                                .resizable()
+                                .frame(width: 50, height: 50)
+                                .padding()
+                                .foregroundColor(.yellow)
                         }
-                        */
-                        Image(systemName: "plus.circle")
-                            .resizable()
-                            .frame(width: 50, height: 50)
-                            .padding()
-                            .foregroundColor(.yellow)
                         Divider()
                             .padding()
                             .frame(height: 50)

@@ -20,9 +20,9 @@ insert into agent(name) values ('Afonso');
 insert into agent(name) values ('Marta');
 
 ----------------------- Tarefas -------------------------------
-insert into task (description, difficulty) values ('Aspirar o Clio', 2);
-insert into task (description, difficulty) values ('Varrer cozinha', 1);
-insert into task (description, difficulty) values ('Passear a NaNa', 3);
+--insert into task (description, difficulty) values ('Aspirar o Clio', 2);
+--insert into task (description, difficulty) values ('Varrer cozinha', 1);
+--insert into task (description, difficulty) values ('Passear a NaNa', 3);
 
 ----------------------- Atribuições ---------------------------
 insert into assignment (agent,task,deadline_date,supervisor,reward) values ('Diogo','Aspirar o Clio','2020-02-02','Pai','Comer arroz');

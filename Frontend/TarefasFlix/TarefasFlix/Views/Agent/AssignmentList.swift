@@ -102,7 +102,7 @@ struct AssignmentList: View {
                                 VStack(alignment: .leading) {
                                     Text("Por: \(assignment.supervisor)")
                                     Text("Até: \(assignment.deadline_date)")
-                                    if assignment.reward != nil {
+                                    if assignment.reward != "null" {
                                         Text("Recompensa: \(assignment.reward)")
                                     }
                                     Divider()
