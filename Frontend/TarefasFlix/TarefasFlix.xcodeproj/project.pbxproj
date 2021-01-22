@@ -30,6 +30,7 @@
 		22A826FF259CD95C004959AC /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22A826FE259CD95C004959AC /* ContentView.swift */; };
 		22A82701259CD95C004959AC /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 22A82700259CD95C004959AC /* Assets.xcassets */; };
 		22A82704259CD95C004959AC /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 22A82703259CD95C004959AC /* Preview Assets.xcassets */; };
+		22F646E225BADDF400840535 /* AssignmentForm.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22F646E125BADDF400840535 /* AssignmentForm.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -58,6 +59,7 @@
 		22A82700259CD95C004959AC /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		22A82703259CD95C004959AC /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		22A82705259CD95C004959AC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		22F646E125BADDF400840535 /* AssignmentForm.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AssignmentForm.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -86,6 +88,7 @@
 			isa = PBXGroup;
 			children = (
 				2258651D25A795B80098EDB2 /* NewsList.swift */,
+				22F646E125BADDF400840535 /* AssignmentForm.swift */,
 			);
 			path = Supervisor;
 			sourceTree = "<group>";
@@ -279,6 +282,7 @@
 				22A826FD259CD95C004959AC /* TarefasFlixApp.swift in Sources */,
 				2225249825A87E0A0091A0EA /* AssignmentListHeader.swift in Sources */,
 				22A6CA58259DE9B400FA81AD /* PersonImage.swift in Sources */,
+				22F646E225BADDF400840535 /* AssignmentForm.swift in Sources */,
 				22A6CA70259DF47500FA81AD /* FamilyLoader.swift in Sources */,
 				2258651325A774BF0098EDB2 /* RefreshableScrollView.swift in Sources */,
 			);
