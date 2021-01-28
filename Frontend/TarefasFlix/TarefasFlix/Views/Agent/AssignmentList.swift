@@ -17,14 +17,78 @@ struct AssignmentList: View {
             (!showUnfinishedOnly || assignment.status != "feito")
         }
     }
-    
+
     var body: some View {
         NavigationView {
             // Assignment List Header
-            VStack {
+            ZStack (alignment: .center) {
+                // List
+                if handler.dataHasLoaded {
+                    ScrollView {
+                        Spacer()
+                            .frame(height: 135)
+                        ForEach(filteredAssignments) { assignment in
+                            Menu {
+                                if assignment.status != "feito" {
+                                    Button {
+                                        handler.finishAssignment(assignment.id)
+                                        reload = !reload
+                                    } label: {
+                                        Text("Acabei a tarefa!")
+                                        Image(systemName: "checkmark")
+                                    }
+                                    if assignment.status != "em consideração" {
+                                        Button {
+                                            handler.complainAssignment(assignment.id)
+                                            reload = !reload
+                                        } label: {
+                                            Text("Reclamar")
+                                            Image(systemName: "hand.thumbsdown")
+                                        }
+                                    }
+                                }
+                            } label: {
+                                VStack {
+                                    Text(assignment.task)
+                                        .font(.title2)
+                                        .fontWeight(.semibold)
+                                        .foregroundColor(Color(.sRGB, red: 200/255, green: 0/255, blue: 0/255))
+                                    Divider()
+                                    VStack(alignment: .leading) {
+                                        Text("Por: \(assignment.supervisor)")
+                                        Text("Até: \(assignment.deadline_date)")
+                                        if assignment.reward != "null" {
+                                            Text("Recompensa: \(assignment.reward)")
+                                        }
+                                        Divider()
+                                        HStack {
+                                            Text("Status:")
+                                            Text("\(assignment.status)".capitalized)
+                                                .font(.title3)
+                                                .fontWeight(.medium)
+                                        }
+                                    }
+                                    .font(.body)
+                                    .foregroundColor(.black)
+                                }
+                                .padding()
+                                .cornerRadius(20)
+                                .overlay(
+                                    RoundedRectangle(cornerRadius: 20)
+                                        .stroke(Color(.sRGB, red: 200/255, green: 200/255, blue: 200/255, opacity: 0.5), lineWidth: 1)
+                                        .shadow(radius: 3)
+                                )
+                                .padding([.leading, .bottom, .trailing])
+                            }
+                        }
+                    }
+                    .padding([.leading, .trailing])
+                }
+                else {
+                    Text("Loading")
+                }
+                // AssignmentListFooter
                 VStack {
-                    Spacer()
-                        .frame(height: 150)
                     HStack {
                         Spacer()
                         NavigationLink(destination: LoginScreen()) {
@@ -33,7 +97,6 @@ struct AssignmentList: View {
                         Spacer()
                             .frame(width: 200)
                         Button {
-                            handler.load()
                             handler.load()
                             reload = !reload
                         } label: {
@@ -55,83 +118,21 @@ struct AssignmentList: View {
                         }
                         Spacer()
                     }
-                    
-                }
-                .navigationBarHidden(true)
-                .cornerRadius(20)
-                .overlay(
-                    RoundedRectangle(cornerRadius: 20)
-                        .stroke(Color(.sRGB, red: 200/255, green: 200/255, blue: 200/255,
-                                      opacity: 0.5), lineWidth: 1)
-                        .shadow(radius: 3)
-                    
-                )
-                // List
-                ScrollView {
+                    .padding()
+                    .navigationBarHidden(true)
+                    .cornerRadius(20)
+                    .overlay(
+                        RoundedRectangle(cornerRadius: 20)
+                            .stroke(Color(.sRGB, red: 200/255, green: 200/255, blue: 200/255,
+                                          opacity: 0.5), lineWidth: 1)
+                            .shadow(radius: 3)
+                        
+                    )
+                    .background(Color.white)
+                    .opacity(1)
+                    .padding()
                     Spacer()
-                        .frame(height: 15)
-                    ForEach(filteredAssignments) { assignment in
-                        Menu {
-                            if assignment.status != "feito" {
-                                Button {
-                                    handler.finishAssignment(assignment.id)
-                                    handler.load()
-                                    reload = !reload
-                                } label: {
-                                    Text("Acabei a tarefa!")
-                                    Image(systemName: "checkmark")
-                                }
-                                if assignment.status != "em consideração" {
-                                    Button {
-                                        handler.complainAssignment(assignment.id)
-                                        handler.load()
-                                        reload = !reload
-                                    } label: {
-                                        Text("Reclamar")
-                                        Image(systemName: "hand.thumbsdown")
-                                    }
-                                }
-                            }
-                        } label: {
-                            VStack {
-                                Text(assignment.task)
-                                    .font(.title2)
-                                    .fontWeight(.semibold)
-                                    .foregroundColor(Color(.sRGB, red: 200/255, green: 0/255, blue: 0/255))
-                                Divider()
-                                VStack(alignment: .leading) {
-                                    Text("Por: \(assignment.supervisor)")
-                                    Text("Até: \(assignment.deadline_date)")
-                                    if assignment.reward != "null" {
-                                        Text("Recompensa: \(assignment.reward)")
-                                    }
-                                    Divider()
-                                    HStack {
-                                        Text("Status:")
-                                        Text("\(assignment.status)".capitalized)
-                                            .font(.title3)
-                                            .fontWeight(.medium)
-                                    }
-                                }
-                                .font(.body)
-                                .foregroundColor(.black)
-                            }
-                            .padding()
-                            .cornerRadius(20)
-                            .overlay(
-                                RoundedRectangle(cornerRadius: 20)
-                                    .stroke(Color(.sRGB, red: 200/255, green: 200/255, blue: 200/255, opacity: 0.5), lineWidth: 1)
-                                    .shadow(radius: 3)
-                            )
-                            .padding([.leading, .bottom, .trailing])
-                        }
-                    }
-                    Spacer()
-                        .frame(height: 15)
-                }
-                .padding([.leading, .trailing])
-                // AssignmentListFooter
-                VStack {
+                    // Footer
                     HStack {
                         Spacer()
                         Image(systemName: "rectangle.stack.fill")
@@ -141,34 +142,34 @@ struct AssignmentList: View {
                         Spacer()
                             .frame(width: 50)
                         Divider()
+                            .padding()
                             .frame(height: 50)
                         Spacer()
                             .frame(width: 50)
                         NavigationLink(destination: ScoreScreen(handler: handler)) {
                             Image(systemName: "chart.bar.fill")
                                 .resizable()
-                                .frame(width: 30, height: 30)
+                                .frame(width: 30 ,height: 30)
                                 .padding()
                                 .accentColor(.gray)
                         }
                         Spacer()
                     }
-                    Spacer()
-                        .frame(height: 100)
-                    
+                    .navigationBarHidden(true)
+                    .cornerRadius(20)
+                    .overlay(
+                        RoundedRectangle(cornerRadius: 20)
+                            .stroke(Color(.sRGB, red: 200/255, green: 200/255, blue: 200/255,
+                                          opacity: 0.5), lineWidth: 1)
+                            .shadow(radius: 3)
+                        
+                    )
+                    .background(Color.white)
+                    .opacity(1)
+                    .padding()
                 }
-                .navigationBarHidden(true)
-                .cornerRadius(20)
-                .overlay(
-                    RoundedRectangle(cornerRadius: 20)
-                        .stroke(Color(.sRGB, red: 200/255, green: 200/255, blue: 200/255,
-                                      opacity: 0.5), lineWidth: 1)
-                        .shadow(radius: 3)
-                    
-                )
             }
             .navigationBarHidden(true)
-            .frame(height: 1030)
         }
         .navigationBarHidden(true)
     }

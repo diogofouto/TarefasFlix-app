@@ -9,7 +9,7 @@ import SwiftUI
 
 struct AssignmentForm: View {
     @State var task: String = ""
-    @State var difficulty: String = ""
+    //@State var difficulty: String = ""
     @State var agent: String = ""
     @State var start_date: Date = Date()
     @State var deadline_date: Date = Date()
@@ -59,7 +59,7 @@ struct AssignmentForm: View {
                     }
                     Section(header: Text("Datas")) {
                         DatePicker(selection: $start_date, in: Date()..., displayedComponents: .date) {
-                            Text("Começar...")
+                            Text("Começar em...")
                                 .foregroundColor(Color(.sRGB, red: 190/255, green: 190/255, blue: 190/255))
                         }
                         DatePicker(selection: $deadline_date, in: Date()..., displayedComponents: .date) {
@@ -72,7 +72,7 @@ struct AssignmentForm: View {
                     }
                 }
                 .padding()
-                .offset(y: 70)
+                .offset(y: 100)
                 .navigationBarHidden(true)
 
                 // Title
@@ -100,24 +100,41 @@ struct AssignmentForm: View {
                     }
                     Spacer()
                         .frame(width: 110)
-                    NavigationLink(destination: NewsList(handler: handler), isActive: $isCreated) {
-                        Button {
-                            handler.createAssignment(task: task, agent: agent, start_date: start_date, deadline_date: deadline_date, reward: reward)
-                            self.isCreated = true
-                        } label: {
-                            Image(systemName: "paperplane")
-                                .resizable()
-                                .frame(width: 30, height: 30)
-                                .padding()
-                                .background(Color(.sRGB, red: 0/255, green: 210/255, blue: 0/255))
-                                .foregroundColor(.white)
-                                .cornerRadius(100)
-                                .overlay(
-                                    RoundedRectangle(cornerRadius: 100)
-                                        .stroke(Color(.sRGB, red: 200/255, green: 200/255, blue: 200/255,
-                                                      opacity: 0.5), lineWidth: 1)
-                                        .shadow(radius: 5)
-                                )
+                    if (task == "" || agent == ""){
+                        Image(systemName: "paperplane")
+                            .resizable()
+                            .frame(width: 30, height: 30)
+                            .padding()
+                            .background(Color(.sRGB, red: 200/255, green: 200/255, blue: 200/255))
+                            .foregroundColor(.white)
+                            .cornerRadius(100)
+                            .overlay(
+                                RoundedRectangle(cornerRadius: 100)
+                                    .stroke(Color(.sRGB, red: 200/255, green: 200/255, blue: 200/255,
+                                                  opacity: 0.5), lineWidth: 1)
+                                    .shadow(radius: 5)
+                            )
+                    }
+                    else {
+                        NavigationLink(destination: NewsList(handler: handler), isActive: $isCreated) {
+                            Button {
+                                handler.createAssignment(task: task, agent: agent, start_date: start_date, deadline_date: deadline_date, reward: reward)
+                                self.isCreated = true
+                            } label: {
+                                Image(systemName: "paperplane")
+                                    .resizable()
+                                    .frame(width: 30, height: 30)
+                                    .padding()
+                                    .background(Color(.sRGB, red: 0/255, green: 210/255, blue: 0/255))
+                                    .foregroundColor(.white)
+                                    .cornerRadius(100)
+                                    .overlay(
+                                        RoundedRectangle(cornerRadius: 100)
+                                            .stroke(Color(.sRGB, red: 200/255, green: 200/255, blue: 200/255,
+                                                          opacity: 0.5), lineWidth: 1)
+                                            .shadow(radius: 5)
+                                    )
+                            }
                         }
                     }
                 }
@@ -131,7 +148,7 @@ struct AssignmentForm: View {
 }
 
 struct AssignmentForm_Previews: PreviewProvider {
-    @ObservedObject static var handler = NewsHandler("Mãe")
+    @ObservedObject static var handler = NewsHandler(supervisor: "Mãe", password: "0000")
     static var previews: some View {
         AssignmentForm(handler: handler)
     }

@@ -17,6 +17,14 @@
 		2266CDC825ACBC18003A39EA /* AssignmentListFooter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2266CDC725ACBC18003A39EA /* AssignmentListFooter.swift */; };
 		226BB22225ACCDAB002CF72A /* ScoreScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 226BB22125ACCDAB002CF72A /* ScoreScreen.swift */; };
 		2273D88025A2320F0002D0AA /* AssignmentsHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2273D87F25A2320F0002D0AA /* AssignmentsHandler.swift */; };
+		22A4C8FC25C2E84D00C5D949 /* Login.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22A4C8FB25C2E84D00C5D949 /* Login.swift */; };
+		22A4C90525C3139200C5D949 /* UserNotifications.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 22A4C90425C3139200C5D949 /* UserNotifications.framework */; };
+		22A4C90725C3139200C5D949 /* UserNotificationsUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 22A4C90625C3139200C5D949 /* UserNotificationsUI.framework */; };
+		22A4C90A25C3139200C5D949 /* NotificationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22A4C90925C3139200C5D949 /* NotificationViewController.swift */; };
+		22A4C90D25C3139200C5D949 /* MainInterface.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 22A4C90B25C3139200C5D949 /* MainInterface.storyboard */; };
+		22A4C91125C3139200C5D949 /* Notifications.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 22A4C90225C3139200C5D949 /* Notifications.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		22A4C91F25C313AB00C5D949 /* NotificationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22A4C91E25C313AB00C5D949 /* NotificationService.swift */; };
+		22A4C92325C313AB00C5D949 /* NotifServices.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 22A4C91C25C313AB00C5D949 /* NotifServices.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		22A6CA3E259DDE3700FA81AD /* AssignmentList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22A6CA3D259DDE3700FA81AD /* AssignmentList.swift */; };
 		22A6CA41259DDE5B00FA81AD /* AssignmentCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22A6CA40259DDE5B00FA81AD /* AssignmentCard.swift */; };
 		22A6CA46259DDEE000FA81AD /* Assignment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22A6CA45259DDEE000FA81AD /* Assignment.swift */; };
@@ -33,6 +41,38 @@
 		22F646E225BADDF400840535 /* AssignmentForm.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22F646E125BADDF400840535 /* AssignmentForm.swift */; };
 /* End PBXBuildFile section */
 
+/* Begin PBXContainerItemProxy section */
+		22A4C90F25C3139200C5D949 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 22A826F1259CD95C004959AC /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 22A4C90125C3139200C5D949;
+			remoteInfo = Notifications;
+		};
+		22A4C92125C313AB00C5D949 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 22A826F1259CD95C004959AC /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 22A4C91B25C313AB00C5D949;
+			remoteInfo = NotifServices;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		22A4C91525C3139200C5D949 /* Embed App Extensions */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 13;
+			files = (
+				22A4C91125C3139200C5D949 /* Notifications.appex in Embed App Extensions */,
+				22A4C92325C313AB00C5D949 /* NotifServices.appex in Embed App Extensions */,
+			);
+			name = "Embed App Extensions";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
 /* Begin PBXFileReference section */
 		2225249725A87E0A0091A0EA /* AssignmentListHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AssignmentListHeader.swift; sourceTree = "<group>"; };
 		2230107125A8E10C0073BFB1 /* LoginScreenHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginScreenHeader.swift; sourceTree = "<group>"; };
@@ -44,6 +84,16 @@
 		2266CDC725ACBC18003A39EA /* AssignmentListFooter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AssignmentListFooter.swift; sourceTree = "<group>"; };
 		226BB22125ACCDAB002CF72A /* ScoreScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScoreScreen.swift; sourceTree = "<group>"; };
 		2273D87F25A2320F0002D0AA /* AssignmentsHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AssignmentsHandler.swift; sourceTree = "<group>"; };
+		22A4C8FB25C2E84D00C5D949 /* Login.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Login.swift; sourceTree = "<group>"; };
+		22A4C90225C3139200C5D949 /* Notifications.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = Notifications.appex; sourceTree = BUILT_PRODUCTS_DIR; };
+		22A4C90425C3139200C5D949 /* UserNotifications.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UserNotifications.framework; path = System/Library/Frameworks/UserNotifications.framework; sourceTree = SDKROOT; };
+		22A4C90625C3139200C5D949 /* UserNotificationsUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UserNotificationsUI.framework; path = System/Library/Frameworks/UserNotificationsUI.framework; sourceTree = SDKROOT; };
+		22A4C90925C3139200C5D949 /* NotificationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationViewController.swift; sourceTree = "<group>"; };
+		22A4C90C25C3139200C5D949 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/MainInterface.storyboard; sourceTree = "<group>"; };
+		22A4C90E25C3139200C5D949 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		22A4C91C25C313AB00C5D949 /* NotifServices.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = NotifServices.appex; sourceTree = BUILT_PRODUCTS_DIR; };
+		22A4C91E25C313AB00C5D949 /* NotificationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationService.swift; sourceTree = "<group>"; };
+		22A4C92025C313AB00C5D949 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		22A6CA3D259DDE3700FA81AD /* AssignmentList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AssignmentList.swift; sourceTree = "<group>"; };
 		22A6CA40259DDE5B00FA81AD /* AssignmentCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AssignmentCard.swift; sourceTree = "<group>"; };
 		22A6CA45259DDEE000FA81AD /* Assignment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Assignment.swift; sourceTree = "<group>"; };
@@ -63,6 +113,22 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		22A4C8FF25C3139200C5D949 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				22A4C90725C3139200C5D949 /* UserNotificationsUI.framework in Frameworks */,
+				22A4C90525C3139200C5D949 /* UserNotifications.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		22A4C91925C313AB00C5D949 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		22A826F6259CD95C004959AC /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -89,6 +155,7 @@
 			children = (
 				2258651D25A795B80098EDB2 /* NewsList.swift */,
 				22F646E125BADDF400840535 /* AssignmentForm.swift */,
+				22A4C8FB25C2E84D00C5D949 /* Login.swift */,
 			);
 			path = Supervisor;
 			sourceTree = "<group>";
@@ -100,6 +167,34 @@
 				2258652425A796940098EDB2 /* NewsHandler.swift */,
 			);
 			path = "Backend Connection";
+			sourceTree = "<group>";
+		};
+		22A4C90325C3139200C5D949 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				22A4C90425C3139200C5D949 /* UserNotifications.framework */,
+				22A4C90625C3139200C5D949 /* UserNotificationsUI.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		22A4C90825C3139200C5D949 /* Notifications */ = {
+			isa = PBXGroup;
+			children = (
+				22A4C90925C3139200C5D949 /* NotificationViewController.swift */,
+				22A4C90B25C3139200C5D949 /* MainInterface.storyboard */,
+				22A4C90E25C3139200C5D949 /* Info.plist */,
+			);
+			path = Notifications;
+			sourceTree = "<group>";
+		};
+		22A4C91D25C313AB00C5D949 /* NotifServices */ = {
+			isa = PBXGroup;
+			children = (
+				22A4C91E25C313AB00C5D949 /* NotificationService.swift */,
+				22A4C92025C313AB00C5D949 /* Info.plist */,
+			);
+			path = NotifServices;
 			sourceTree = "<group>";
 		};
 		22A6CA43259DDEAB00FA81AD /* Views */ = {
@@ -159,6 +254,9 @@
 			isa = PBXGroup;
 			children = (
 				22A826FB259CD95C004959AC /* TarefasFlix */,
+				22A4C90825C3139200C5D949 /* Notifications */,
+				22A4C91D25C313AB00C5D949 /* NotifServices */,
+				22A4C90325C3139200C5D949 /* Frameworks */,
 				22A826FA259CD95C004959AC /* Products */,
 			);
 			sourceTree = "<group>";
@@ -167,6 +265,8 @@
 			isa = PBXGroup;
 			children = (
 				22A826F9259CD95C004959AC /* TarefasFlix.app */,
+				22A4C90225C3139200C5D949 /* Notifications.appex */,
+				22A4C91C25C313AB00C5D949 /* NotifServices.appex */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -197,6 +297,40 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
+		22A4C90125C3139200C5D949 /* Notifications */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 22A4C91225C3139200C5D949 /* Build configuration list for PBXNativeTarget "Notifications" */;
+			buildPhases = (
+				22A4C8FE25C3139200C5D949 /* Sources */,
+				22A4C8FF25C3139200C5D949 /* Frameworks */,
+				22A4C90025C3139200C5D949 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = Notifications;
+			productName = Notifications;
+			productReference = 22A4C90225C3139200C5D949 /* Notifications.appex */;
+			productType = "com.apple.product-type.app-extension";
+		};
+		22A4C91B25C313AB00C5D949 /* NotifServices */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 22A4C92425C313AB00C5D949 /* Build configuration list for PBXNativeTarget "NotifServices" */;
+			buildPhases = (
+				22A4C91825C313AB00C5D949 /* Sources */,
+				22A4C91925C313AB00C5D949 /* Frameworks */,
+				22A4C91A25C313AB00C5D949 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = NotifServices;
+			productName = NotifServices;
+			productReference = 22A4C91C25C313AB00C5D949 /* NotifServices.appex */;
+			productType = "com.apple.product-type.app-extension";
+		};
 		22A826F8259CD95C004959AC /* TarefasFlix */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 22A82708259CD95C004959AC /* Build configuration list for PBXNativeTarget "TarefasFlix" */;
@@ -204,10 +338,13 @@
 				22A826F5259CD95C004959AC /* Sources */,
 				22A826F6259CD95C004959AC /* Frameworks */,
 				22A826F7259CD95C004959AC /* Resources */,
+				22A4C91525C3139200C5D949 /* Embed App Extensions */,
 			);
 			buildRules = (
 			);
 			dependencies = (
+				22A4C91025C3139200C5D949 /* PBXTargetDependency */,
+				22A4C92225C313AB00C5D949 /* PBXTargetDependency */,
 			);
 			name = TarefasFlix;
 			productName = TarefasFlix;
@@ -220,9 +357,15 @@
 		22A826F1259CD95C004959AC /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastSwiftUpdateCheck = 1230;
+				LastSwiftUpdateCheck = 1240;
 				LastUpgradeCheck = 1230;
 				TargetAttributes = {
+					22A4C90125C3139200C5D949 = {
+						CreatedOnToolsVersion = 12.4;
+					};
+					22A4C91B25C313AB00C5D949 = {
+						CreatedOnToolsVersion = 12.4;
+					};
 					22A826F8259CD95C004959AC = {
 						CreatedOnToolsVersion = 12.3;
 					};
@@ -242,11 +385,28 @@
 			projectRoot = "";
 			targets = (
 				22A826F8259CD95C004959AC /* TarefasFlix */,
+				22A4C90125C3139200C5D949 /* Notifications */,
+				22A4C91B25C313AB00C5D949 /* NotifServices */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		22A4C90025C3139200C5D949 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				22A4C90D25C3139200C5D949 /* MainInterface.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		22A4C91A25C313AB00C5D949 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		22A826F7259CD95C004959AC /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -260,6 +420,22 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		22A4C8FE25C3139200C5D949 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				22A4C90A25C3139200C5D949 /* NotificationViewController.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		22A4C91825C313AB00C5D949 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				22A4C91F25C313AB00C5D949 /* NotificationService.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		22A826F5259CD95C004959AC /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -273,6 +449,7 @@
 				2273D88025A2320F0002D0AA /* AssignmentsHandler.swift in Sources */,
 				22A6CA61259DF1A900FA81AD /* PersonThumbnail.swift in Sources */,
 				22A6CA5C259DE9F500FA81AD /* LoginScreen.swift in Sources */,
+				22A4C8FC25C2E84D00C5D949 /* Login.swift in Sources */,
 				22A6CA64259DF1ED00FA81AD /* Person.swift in Sources */,
 				2266CDC825ACBC18003A39EA /* AssignmentListFooter.swift in Sources */,
 				2230107225A8E10C0073BFB1 /* LoginScreenHeader.swift in Sources */,
@@ -290,7 +467,111 @@
 		};
 /* End PBXSourcesBuildPhase section */
 
+/* Begin PBXTargetDependency section */
+		22A4C91025C3139200C5D949 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 22A4C90125C3139200C5D949 /* Notifications */;
+			targetProxy = 22A4C90F25C3139200C5D949 /* PBXContainerItemProxy */;
+		};
+		22A4C92225C313AB00C5D949 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 22A4C91B25C313AB00C5D949 /* NotifServices */;
+			targetProxy = 22A4C92125C313AB00C5D949 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		22A4C90B25C3139200C5D949 /* MainInterface.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				22A4C90C25C3139200C5D949 /* Base */,
+			);
+			name = MainInterface.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
 /* Begin XCBuildConfiguration section */
+		22A4C91325C3139200C5D949 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 4TUPR7BMNQ;
+				INFOPLIST_FILE = Notifications/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.4;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.example.TarefasFlix.Notifications;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		22A4C91425C3139200C5D949 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 4TUPR7BMNQ;
+				INFOPLIST_FILE = Notifications/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.4;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.example.TarefasFlix.Notifications;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		22A4C92525C313AB00C5D949 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 4TUPR7BMNQ;
+				INFOPLIST_FILE = NotifServices/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.4;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.example.TarefasFlix.NotifServices;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		22A4C92625C313AB00C5D949 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 4TUPR7BMNQ;
+				INFOPLIST_FILE = NotifServices/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.4;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.example.TarefasFlix.NotifServices;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
 		22A82706259CD95C004959AC /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -410,6 +691,7 @@
 		22A82709259CD95C004959AC /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
@@ -432,6 +714,7 @@
 		22A8270A259CD95C004959AC /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
@@ -454,6 +737,24 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		22A4C91225C3139200C5D949 /* Build configuration list for PBXNativeTarget "Notifications" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				22A4C91325C3139200C5D949 /* Debug */,
+				22A4C91425C3139200C5D949 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		22A4C92425C313AB00C5D949 /* Build configuration list for PBXNativeTarget "NotifServices" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				22A4C92525C313AB00C5D949 /* Debug */,
+				22A4C92625C313AB00C5D949 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		22A826F4259CD95C004959AC /* Build configuration list for PBXProject "TarefasFlix" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (

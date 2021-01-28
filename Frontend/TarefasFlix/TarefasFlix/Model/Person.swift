@@ -12,4 +12,5 @@ struct Person: Hashable, Codable, Identifiable {
     var id: Int
     var name: String
     var position: String
+    var password: String
 }

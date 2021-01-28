@@ -20,20 +20,92 @@ struct NewsList: View {
     
     var body: some View {
         NavigationView {
-            // News List Header
-            VStack {
+            ZStack (alignment: .center) {
+                // List
+                if handler.dataHasLoaded {
+                    ScrollView {
+                        Spacer()
+                            .frame(height: 135)
+                        ForEach(filteredNews) { news in
+                            Menu {
+                                if news.message == "Houve reclamação!" {
+                                    Button {
+                                        handler.forceAssignment(news_id: news.id, assignment_id: news.assignment_id)
+                                        reload = !reload
+                                    } label: {
+                                        Text("Manter Tarefa")
+                                        Image(systemName: "hand.thumbsup")
+                                    }
+                                    Button {
+                                        handler.forgetAssignment(news_id: news.id, assignment_id: news.assignment_id)
+                                        reload = !reload
+                                    } label: {
+                                        Text("Retirar Tarefa")
+                                        Image(systemName: "hand.thumbsdown")
+                                    }
+                                }
+                                else if news.status != "visto" {
+                                    Button {
+                                        handler.checkNews(news.id)
+                                        reload = !reload
+                                    } label: {
+                                        Text("Marcar como visto")
+                                        Image(systemName: "checkmark")
+                                    }
+                                }
+                            } label: {
+                                VStack {
+                                    if news.message == "Houve reclamação!" {
+                                        Text(news.message)
+                                            .font(.title2)
+                                            .fontWeight(.semibold)
+                                            .foregroundColor(Color(.sRGB, red: 200/255, green: 0/255, blue: 0/255))
+                                    }
+                                    else {
+                                        Text(news.message)
+                                            .font(.title2)
+                                            .fontWeight(.semibold)
+                                            .foregroundColor(Color(.sRGB, red: 0/255, green: 100/255, blue: 255/255))
+                                    }
+                                    Divider()
+                                    VStack {
+                                        Text("\(news.task)")
+                                            .font(.title3)
+                                        HStack {
+                                            Text("Por:")
+                                                .fontWeight(.light)
+                                            Text("\(news.agent)")
+                                        }
+                                    }
+                                    .font(.body)
+                                    .foregroundColor(.black)
+                                }
+                                .padding()
+                                .cornerRadius(20)
+                                .overlay(
+                                    RoundedRectangle(cornerRadius: 20)
+                                        .stroke(Color(.sRGB, red: 200/255, green: 200/255, blue: 200/255, opacity: 0.5), lineWidth: 1)
+                                        .shadow(radius: 3)
+                                )
+                                .padding([.leading, .bottom, .trailing])
+                            }
+                        }
+                    }
+                    .padding([.leading, .trailing])
+                }
+                else {
+                    Text("Loading")
+                }
+                // News List Header
                 VStack {
-                    Spacer()
-                        .frame(height: 150)
                     HStack {
                         Spacer()
                         NavigationLink(destination: LoginScreen()) {
                             PersonImage(name: handler.supervisor, width: 45, height: 60)
                         }
                         Spacer()
-                            .frame(width: 200)
+                            .frame(width: 160)
                         Button {
-                            handler.load()
                             handler.load()
                             reload = !reload
                         } label: {
@@ -55,94 +127,21 @@ struct NewsList: View {
                         }
                         Spacer()
                     }
-                    
-                }
-                .navigationBarHidden(true)
-                .cornerRadius(20)
-                .overlay(
-                    RoundedRectangle(cornerRadius: 20)
-                        .stroke(Color(.sRGB, red: 200/255, green: 200/255, blue: 200/255,
-                                      opacity: 0.5), lineWidth: 1)
-                        .shadow(radius: 3)
-                    
-                )
-                // List
-                ScrollView {
+                    .padding()
+                    .navigationBarHidden(true)
+                    .cornerRadius(20)
+                    .overlay(
+                        RoundedRectangle(cornerRadius: 20)
+                            .stroke(Color(.sRGB, red: 200/255, green: 200/255, blue: 200/255,
+                                          opacity: 0.5), lineWidth: 1)
+                            .shadow(radius: 3)
+                        
+                    )
+                    .background(Color.white)
+                    .opacity(1)
+                    .padding()
                     Spacer()
-                        .frame(height: 15)
-                    ForEach(filteredNews) { news in
-                        Menu {
-                            if news.message == "Houve reclamação!" {
-                                Button {
-                                    handler.forceAssignment(news_id: news.id, assignment_id: news.assignment_id)
-                                    handler.load()
-                                    reload = !reload
-                                } label: {
-                                    Text("Manter Tarefa")
-                                    Image(systemName: "hand.thumbsup")
-                                }
-                                Button {
-                                    handler.forgetAssignment(news_id: news.id, assignment_id: news.assignment_id)
-                                    handler.load()
-                                    reload = !reload
-                                } label: {
-                                    Text("Retirar Tarefa")
-                                    Image(systemName: "hand.thumbsdown")
-                                }
-                            }
-                            else if news.status != "visto" {
-                                Button {
-                                    handler.checkNews(news.id)
-                                    handler.load()
-                                    reload = !reload
-                                } label: {
-                                    Text("Marcar como visto")
-                                    Image(systemName: "checkmark")
-                                }
-                            }
-                        } label: {
-                            VStack {
-                                if news.message == "Houve reclamação!" {
-                                    Text(news.message)
-                                        .font(.title2)
-                                        .fontWeight(.semibold)
-                                        .foregroundColor(Color(.sRGB, red: 200/255, green: 0/255, blue: 0/255))
-                                }
-                                else {
-                                    Text(news.message)
-                                        .font(.title2)
-                                        .fontWeight(.semibold)
-                                        .foregroundColor(Color(.sRGB, red: 0/255, green: 100/255, blue: 255/255))
-                                }
-                                Divider()
-                                VStack {
-                                    Text("\(news.task)")
-                                        .font(.title3)
-                                    HStack {
-                                        Text("Por:")
-                                            .fontWeight(.light)
-                                        Text("\(news.agent)")
-                                    }
-                                }
-                                .font(.body)
-                                .foregroundColor(.black)
-                            }
-                            .padding()
-                            .cornerRadius(20)
-                            .overlay(
-                                RoundedRectangle(cornerRadius: 20)
-                                    .stroke(Color(.sRGB, red: 200/255, green: 200/255, blue: 200/255, opacity: 0.5), lineWidth: 1)
-                                    .shadow(radius: 3)
-                            )
-                            .padding([.leading, .bottom, .trailing])
-                        }
-                    }
-                    Spacer()
-                        .frame(height: 15)
-                }
-                .padding([.leading, .trailing])
-                // NewsListFooter
-                VStack {
+                    // NewsListFooter
                     HStack {
                         Spacer()
                         Image(systemName: "rectangle.stack.fill")
@@ -155,7 +154,7 @@ struct NewsList: View {
                         NavigationLink(destination: AssignmentForm(handler: handler)) {
                             Image(systemName: "plus.circle")
                                 .resizable()
-                                .frame(width: 50, height: 50)
+                                .frame(width: 60, height: 60)
                                 .padding()
                                 .foregroundColor(.yellow)
                         }
@@ -169,29 +168,31 @@ struct NewsList: View {
                             .foregroundColor(.gray)
                         Spacer()
                     }
-                    Spacer()
-                        .frame(height: 100)
-                    
+                    .navigationBarHidden(true)
+                    .cornerRadius(20)
+                    .overlay(
+                        RoundedRectangle(cornerRadius: 20)
+                            .stroke(Color(.sRGB, red: 200/255, green: 200/255, blue: 200/255,
+                                          opacity: 0.5), lineWidth: 1)
+                            .shadow(radius: 3)
+                        
+                    )
+                    .background(Color.white)
+                    .opacity(1)
+                    .padding()
                 }
-                .navigationBarHidden(true)
-                .cornerRadius(20)
-                .overlay(
-                    RoundedRectangle(cornerRadius: 20)
-                        .stroke(Color(.sRGB, red: 200/255, green: 200/255, blue: 200/255,
-                                      opacity: 0.5), lineWidth: 1)
-                        .shadow(radius: 3)
-                    
-                )
             }
             .navigationBarHidden(true)
-            .frame(height: 1030)
+            .onAppear {
+                handler.load()
+            }
         }
         .navigationBarHidden(true)
     }
 }
 
 struct NewsList_Previews: PreviewProvider {
-    @ObservedObject static var handler = NewsHandler("Mãe")
+    @ObservedObject static var handler = NewsHandler(supervisor: "Mãe", password: "0000")
     static var previews: some View {
         NewsList(handler: handler)
     }

@@ -11,6 +11,7 @@ import UIKit
 
 public class AssignmentsHandler: ObservableObject {
     var agent: String
+    var dataHasLoaded = false
     @Published var assignments = [Assignment]()
     
     init(_ agent: String){
@@ -19,6 +20,7 @@ public class AssignmentsHandler: ObservableObject {
     }
     
     func load(){
+        self.dataHasLoaded = false
         // Prepare POST request
         guard let url = URL(string: "http://web2.ist.utl.pt/ist193705/TarefasFlix/backend.cgi/listAssignments") else {
             print("Error: invalid API endpoint")
@@ -49,8 +51,9 @@ public class AssignmentsHandler: ObservableObject {
                        print(JSONString)
                     }
                     let response = try JSONDecoder().decode([Assignment].self, from: d)
-                    DispatchQueue.main.sync {
+                    DispatchQueue.main.async {
                         self.assignments = response
+                        self.dataHasLoaded = true
                     }
                 } else {
                     print("No Data in response")
@@ -62,6 +65,7 @@ public class AssignmentsHandler: ObservableObject {
     }
     
     func finishAssignment(_ id: Int){
+        self.dataHasLoaded = false
         // Prepare POST request
         guard let url = URL(string: "http://web2.ist.utl.pt/ist193705/TarefasFlix/backend.cgi/finishAssignment") else {
             print("Error: invalid API endpoint")
@@ -92,8 +96,9 @@ public class AssignmentsHandler: ObservableObject {
                        print(JSONString)
                     }
                     let response = try JSONDecoder().decode([Assignment].self, from: d)
-                    DispatchQueue.main.sync {
+                    DispatchQueue.main.async {
                         self.assignments = response
+                        self.dataHasLoaded = true
                     }
                 } else {
                     print("No Data in response")
@@ -105,6 +110,7 @@ public class AssignmentsHandler: ObservableObject {
     }
     
     func complainAssignment(_ id: Int){
+        self.dataHasLoaded = false
         // Prepare POST request
         guard let url = URL(string: "http://web2.ist.utl.pt/ist193705/TarefasFlix/backend.cgi/complainAssignment") else {
             print("Error: invalid API endpoint")
@@ -135,8 +141,9 @@ public class AssignmentsHandler: ObservableObject {
                        print(JSONString)
                     }
                     let response = try JSONDecoder().decode([Assignment].self, from: d)
-                    DispatchQueue.main.sync {
+                    DispatchQueue.main.async {
                         self.assignments = response
+                        self.dataHasLoaded = true
                     }
                 } else {
                     print("No Data in response")

@@ -2,41 +2,49 @@
     {
         "id": 1,
         "name": "Pai",
-        "position": "supervisor"
+        "position": "supervisor",
+        "password": "0000"
     },
     {
         "id": 2,
         "name": "Mãe",
-        "position": "supervisor"
+        "position": "supervisor",
+        "password": "0000"
     },
     {
         "id": 3,
         "name": "Diogo",
-        "position": "agent"
+        "position": "agent",
+        "password": "0000"
     },
     {
         "id": 4,
         "name": "Francisco",
-        "position": "agent"
+        "position": "agent",
+        "password": "0000"
     },
     {
         "id": 5,
         "name": "Joana",
-        "position": "agent"
+        "position": "agent",
+        "password": "0000"
     },
     {
         "id": 6,
         "name": "Sofia",
-        "position": "agent"
+        "position": "agent",
+        "password": "0000"
     },
     {
         "id": 7,
         "name": "Afonso",
-        "position": "agent"
+        "position": "agent",
+        "password": "0000"
     },
     {
         "id": 8,
         "name": "Marta",
-        "position": "agent"
+        "position": "agent",
+        "password": "0000"
     }
 ]
