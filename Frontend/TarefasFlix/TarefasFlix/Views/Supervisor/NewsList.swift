@@ -30,13 +30,14 @@ struct NewsList: View {
                             Menu {
                                 if news.message == "Houve reclamação!" {
                                     Button {
-                                        handler.forceAssignment(news_id: news.id, assignment_id: news.assignment_id)
-                                        reload = !reload
+                                        self.handler.dataHasLoaded = false
+                                        self.handler.forceAssignment(news_id: news.id, assignment_id: news.assignment_id)
                                     } label: {
                                         Text("Manter Tarefa")
                                         Image(systemName: "hand.thumbsup")
                                     }
                                     Button {
+                                        handler.dataHasLoaded = false
                                         handler.forgetAssignment(news_id: news.id, assignment_id: news.assignment_id)
                                         reload = !reload
                                     } label: {
@@ -46,6 +47,7 @@ struct NewsList: View {
                                 }
                                 else if news.status != "visto" {
                                     Button {
+                                        handler.dataHasLoaded = false
                                         handler.checkNews(news.id)
                                         reload = !reload
                                     } label: {
@@ -107,7 +109,6 @@ struct NewsList: View {
                             .frame(width: 160)
                         Button {
                             handler.load()
-                            reload = !reload
                         } label: {
                             Image(systemName: "arrow.2.circlepath")
                                 .resizable()
@@ -183,11 +184,11 @@ struct NewsList: View {
                 }
             }
             .navigationBarHidden(true)
-            .onAppear {
-                handler.load()
-            }
         }
         .navigationBarHidden(true)
+        .onAppear {
+            handler.load()
+        }
     }
 }
 
