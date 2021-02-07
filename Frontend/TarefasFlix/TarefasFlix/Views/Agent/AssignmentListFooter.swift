@@ -14,7 +14,7 @@ struct AssignmentListFooter: View {
         VStack {
             HStack {
                 Spacer()
-                NavigationLink(destination: AssignmentList(handler: handler)) {
+                NavigationLink(destination: AssignmentScreen(handler: handler)) {
                     Image(systemName: "rectangle.stack.fill")
                         .resizable()
                         .frame(width: 30, height: 30)

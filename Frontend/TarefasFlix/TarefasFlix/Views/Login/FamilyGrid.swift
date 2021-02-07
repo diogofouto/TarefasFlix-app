@@ -17,28 +17,16 @@ struct FamilyGrid: View {
             ForEach(family) { person in
                 // If agent, show assignments
                 if (person.position == "agent") {
-                    let handler = AssignmentsHandler(person.name)
-                    Button {
-                        UserDefaults.standard.set(person.name, forKey: "person")
-                        let person1 = UserDefaults.standard.string(forKey: "person") ?? ""
-                        print("This is \(person1)")
-                    } label: {
-                        NavigationLink(destination: AssignmentList(handler: handler)) {
-                            PersonThumbnail(name: person.name)
-                                .padding()
-                        }
+                    NavigationLink(destination: AgentScreen(person.name)) {
+                        PersonThumbnail(name: person.name)
+                            .padding()
                     }
                 }
                 // If supervisor, show news
                 else {
-                    let handler = NewsHandler(supervisor: person.name, password: person.password)
-                    Button {
-                        UserDefaults.standard.set(person.name, forKey: "person")
-                    } label: {
-                        NavigationLink(destination: Login(handler: handler)) {
-                            PersonThumbnail(name: person.name)
-                                .padding()
-                        }
+                    NavigationLink(destination: Login(supervisor: person.name, password: person.password)) {
+                        PersonThumbnail(name: person.name)
+                            .padding()
                     }
                 }
             }

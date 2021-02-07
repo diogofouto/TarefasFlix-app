@@ -15,17 +15,15 @@ struct ContentView: View {
         VStack {
             if self.showLoginScreen {
                 let person = UserDefaults.standard.string(forKey: "person") ?? ""
-                if (person != "") {
-                    if (person == "Pai" || person == "Mãe") {
-                        let handler = NewsHandler(supervisor: person, password: "0000")
-                        Login(handler: handler)
-                    }
-                    else {
-                        let handler = AssignmentsHandler(person)
-                        AssignmentList(handler: handler)
-                    }
+                if (person == "Pai" || person == "Mãe") {
+                    Login(supervisor: person, password: person)
                 }
-                LoginScreen()
+                else if (person == "Diogo" || person == "Francisco" || person == "Joana" || person == "Sofia" || person == "Afonso" || person == "Marta") {
+                    AgentScreen(person)
+                }
+                else {
+                    LoginScreen()
+                }
             }
             else {
                 Image("TarefasFlix Logo")

@@ -16,7 +16,6 @@ public class AssignmentsHandler: ObservableObject {
     
     init(_ agent: String){
         self.agent = agent
-        load()
     }
     
     func load(){

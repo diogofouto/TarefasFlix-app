@@ -11,14 +11,11 @@ import UIKit
 
 public class NewsHandler: ObservableObject {
     var supervisor: String
-    var password: String
     var dataHasLoaded = false
     @Published var news = [News]()
     
-    init(supervisor: String, password: String){
+    init(_ supervisor: String){
         self.supervisor = supervisor
-        self.password = password
-        load()
     }
     
     func load(){

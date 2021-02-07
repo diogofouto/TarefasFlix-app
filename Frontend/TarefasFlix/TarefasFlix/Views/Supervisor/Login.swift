@@ -8,9 +8,15 @@
 import SwiftUI
 
 struct Login: View {
+    private var supervisor: String
+    private var correctPassword: String
     @State var password: String = ""
-    @ObservedObject var handler: NewsHandler
     @State var isCreated = false
+    
+    init(supervisor: String, password: String) {
+        self.supervisor = supervisor
+        self.correctPassword = password
+    }
     
     var body: some View {
         NavigationView {
@@ -35,7 +41,7 @@ struct Login: View {
                 }
                 
                 // Profile
-                PersonThumbnail(name: handler.supervisor)
+                PersonThumbnail(name: supervisor)
                     .padding()
                     .offset(y: -130)
                 
@@ -58,7 +64,7 @@ struct Login: View {
                     }
                     Spacer()
                         .frame(width: 110)
-                    if (password != handler.password){
+                    if (password != correctPassword){
                         Image(systemName: "checkmark")
                             .resizable()
                             .frame(width: 30, height: 30)
@@ -74,7 +80,7 @@ struct Login: View {
                             )
                     }
                     else {
-                        NavigationLink(destination: NewsList(handler: handler), isActive: $isCreated) {
+                        NavigationLink(destination: SupervisorScreen(self.supervisor), isActive: $isCreated) {
                             Button {
                                 self.isCreated = true
                             } label: {
@@ -105,8 +111,7 @@ struct Login: View {
 }
 
 struct Login_Previews: PreviewProvider {
-    @ObservedObject static var handler = NewsHandler(supervisor: "Mãe", password: "0000")
     static var previews: some View {
-        Login(handler: handler)
+        Login(supervisor: "Mãe", password: "0000")
     }
 }
