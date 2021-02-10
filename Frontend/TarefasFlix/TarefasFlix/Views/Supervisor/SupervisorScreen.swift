@@ -12,6 +12,15 @@ struct SupervisorScreen: View {
     @State private var showUncheckedOnly: Bool = true
     @State private var showScoreScreen: Bool = false
     @State private var reload: Bool = false
+    @State private var reload1: Bool = false
+    @State private var reload2: Bool = false
+    @State private var reload3: Bool = false
+    @State private var reload4: Bool = false
+    @State private var dataHasLoaded: Bool = false
+    
+    @State private var currentNews: Int = 0
+    @State private var currentAssignment: Int = 0
+    
     @State private var showForm: Bool = false
     
     // For form
@@ -159,7 +168,7 @@ struct SupervisorScreen: View {
                 ZStack (alignment: .center) {
                     if showScoreScreen == false {
                         // List
-                        if handler.dataHasLoaded {
+                        if dataHasLoaded {
                             ScrollView {
                                 Spacer()
                                     .frame(height: 135)
@@ -167,16 +176,17 @@ struct SupervisorScreen: View {
                                     Menu {
                                         if news.message == "Houve reclamação!" {
                                             Button {
-                                                self.handler.dataHasLoaded = false
-                                                self.handler.forceAssignment(news_id: news.id, assignment_id: news.assignment_id)
+                                                self.currentNews = news.id
+                                                self.currentAssignment = news.assignment_id
+                                                reload2 = !reload2
                                             } label: {
                                                 Text("Manter Tarefa")
                                                 Image(systemName: "hand.thumbsup")
                                             }
                                             Button {
-                                                handler.dataHasLoaded = false
-                                                handler.forgetAssignment(news_id: news.id, assignment_id: news.assignment_id)
-                                                reload = !reload
+                                                self.currentNews = news.id
+                                                self.currentAssignment = news.assignment_id
+                                                reload3 = !reload3
                                             } label: {
                                                 Text("Retirar Tarefa")
                                                 Image(systemName: "hand.thumbsdown")
@@ -184,9 +194,8 @@ struct SupervisorScreen: View {
                                         }
                                         else if news.status != "visto" {
                                             Button {
-                                                handler.dataHasLoaded = false
-                                                handler.checkNews(news.id)
-                                                reload = !reload
+                                                self.currentNews = news.id
+                                                reload4 = !reload4
                                             } label: {
                                                 Text("Marcar como visto")
                                                 Image(systemName: "checkmark")
@@ -210,11 +219,14 @@ struct SupervisorScreen: View {
                                             VStack {
                                                 Text("\(news.task)")
                                                     .font(.title3)
+                                                Spacer()
                                                 HStack {
                                                     Text("Por:")
                                                         .fontWeight(.light)
                                                     Text("\(news.agent)")
                                                 }
+                                                Spacer()
+                                                Text("\(news.news_date)")
                                             }
                                             .font(.body)
                                             .foregroundColor(.black)
@@ -237,7 +249,21 @@ struct SupervisorScreen: View {
                         }
                     }
                     else {
-                        ScoreScreen()
+                        ScrollView {
+                            Spacer()
+                                .frame(height: 130)
+                            ForEach(handler.scores){ score in
+                                HStack {
+                                    PersonImage(name: score.id, width: 50, height: 60)
+                                        .padding()
+                                    Spacer()
+                                        .frame(width: 50)
+                                    Text("\(score.score)")
+                                        .font(.largeTitle)
+                                        .fontWeight(.medium)
+                                }
+                            }
+                        }
                     }
                     VStack {
                         HStack {
@@ -247,25 +273,30 @@ struct SupervisorScreen: View {
                             }
                             Spacer()
                                 .frame(width: 160)
-                            Button {
-                                handler.load()
-                                reload = !reload
-                            } label: {
-                                Image(systemName: "arrow.2.circlepath")
-                                    .resizable()
-                                    .frame(width: 30, height: 25)
-                                    .accentColor(.black)
-                            }
-                            Spacer()
-                            Menu {
-                                Toggle(isOn: $showUncheckedOnly) {
-                                    Text("Mostrar Apenas Notícias Não Vistas")
+                            if showScoreScreen == false {
+                                Button {
+                                    reload1 = !reload1
+                                } label: {
+                                    Image(systemName: "arrow.2.circlepath")
+                                        .resizable()
+                                        .frame(width: 30, height: 25)
+                                        .accentColor(.black)
                                 }
-                            } label: {
-                                Image(systemName: "slider.horizontal.3")
-                                    .resizable()
-                                    .frame(width: 25, height: 25)
-                                    .accentColor(.black)
+                                Spacer()
+                                Menu {
+                                    Toggle(isOn: $showUncheckedOnly) {
+                                        Text("Mostrar Apenas Notícias Não Vistas")
+                                    }
+                                } label: {
+                                    Image(systemName: "slider.horizontal.3")
+                                        .resizable()
+                                        .frame(width: 25, height: 25)
+                                        .accentColor(.black)
+                                }
+                            }
+                            else {
+                                Spacer()
+                                    .frame(width: 77)
                             }
                             Spacer()
                         }
@@ -358,9 +389,44 @@ struct SupervisorScreen: View {
         }
         .navigationBarHidden(true)
         .onAppear() {
+            dataHasLoaded = false
             UserDefaults.standard.set(self.handler.supervisor, forKey: "person")
             self.handler.load()
+            DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+                dataHasLoaded = true
+            }
         }
+        .onChange(of: reload1, perform: { value in
+            dataHasLoaded = false
+            self.handler.load()
+            DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+                dataHasLoaded = true
+            }
+        })
+        .onChange(of: reload2, perform: { value in
+            dataHasLoaded = false
+            self.handler.forceAssignment(news_id: currentNews, assignment_id: currentAssignment)
+            self.handler.load()
+            DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
+                dataHasLoaded = true
+            }
+        })
+        .onChange(of: reload3, perform: { value in
+            dataHasLoaded = false
+            self.handler.forgetAssignment(news_id: currentNews, assignment_id: currentAssignment)
+            self.handler.load()
+            DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
+                dataHasLoaded = true
+            }
+        })
+        .onChange(of: reload4, perform: { value in
+            dataHasLoaded = false
+            self.handler.checkNews(currentNews)
+            self.handler.load()
+            DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
+                dataHasLoaded = true
+            }
+        })
     }
 }
 

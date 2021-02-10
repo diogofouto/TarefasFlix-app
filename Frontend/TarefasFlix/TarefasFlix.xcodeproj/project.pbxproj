@@ -9,12 +9,12 @@
 /* Begin PBXBuildFile section */
 		2230107225A8E10C0073BFB1 /* LoginScreenHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2230107125A8E10C0073BFB1 /* LoginScreenHeader.swift */; };
 		2230107625A8E1F30073BFB1 /* FamilyGrid.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2230107525A8E1F30073BFB1 /* FamilyGrid.swift */; };
+		224B4ED025D450B8008CEF02 /* Score.swift in Sources */ = {isa = PBXBuildFile; fileRef = 224B4ECF25D450B8008CEF02 /* Score.swift */; };
 		224F16FF25CC7019006F73D2 /* AgentScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 224F16FE25CC7019006F73D2 /* AgentScreen.swift */; };
 		224F170725CC7639006F73D2 /* SupervisorScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 224F170625CC7639006F73D2 /* SupervisorScreen.swift */; };
 		2258651325A774BF0098EDB2 /* RefreshableScrollView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2258651225A774BF0098EDB2 /* RefreshableScrollView.swift */; };
 		2258652125A796890098EDB2 /* News.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2258652025A796890098EDB2 /* News.swift */; };
 		2258652525A796940098EDB2 /* NewsHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2258652425A796940098EDB2 /* NewsHandler.swift */; };
-		226BB22225ACCDAB002CF72A /* ScoreScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 226BB22125ACCDAB002CF72A /* ScoreScreen.swift */; };
 		2273D88025A2320F0002D0AA /* AssignmentsHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2273D87F25A2320F0002D0AA /* AssignmentsHandler.swift */; };
 		22A4C8FC25C2E84D00C5D949 /* Login.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22A4C8FB25C2E84D00C5D949 /* Login.swift */; };
 		22A6CA46259DDEE000FA81AD /* Assignment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22A6CA45259DDEE000FA81AD /* Assignment.swift */; };
@@ -46,12 +46,12 @@
 /* Begin PBXFileReference section */
 		2230107125A8E10C0073BFB1 /* LoginScreenHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginScreenHeader.swift; sourceTree = "<group>"; };
 		2230107525A8E1F30073BFB1 /* FamilyGrid.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FamilyGrid.swift; sourceTree = "<group>"; };
+		224B4ECF25D450B8008CEF02 /* Score.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Score.swift; sourceTree = "<group>"; };
 		224F16FE25CC7019006F73D2 /* AgentScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AgentScreen.swift; sourceTree = "<group>"; };
 		224F170625CC7639006F73D2 /* SupervisorScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SupervisorScreen.swift; sourceTree = "<group>"; };
 		2258651225A774BF0098EDB2 /* RefreshableScrollView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RefreshableScrollView.swift; sourceTree = "<group>"; };
 		2258652025A796890098EDB2 /* News.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = News.swift; sourceTree = "<group>"; };
 		2258652425A796940098EDB2 /* NewsHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsHandler.swift; sourceTree = "<group>"; };
-		226BB22125ACCDAB002CF72A /* ScoreScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScoreScreen.swift; sourceTree = "<group>"; };
 		2273D87F25A2320F0002D0AA /* AssignmentsHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AssignmentsHandler.swift; sourceTree = "<group>"; };
 		22A4C8FB25C2E84D00C5D949 /* Login.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Login.swift; sourceTree = "<group>"; };
 		22A6CA45259DDEE000FA81AD /* Assignment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Assignment.swift; sourceTree = "<group>"; };
@@ -113,7 +113,6 @@
 			isa = PBXGroup;
 			children = (
 				22A826FE259CD95C004959AC /* ContentView.swift */,
-				226BB22125ACCDAB002CF72A /* ScoreScreen.swift */,
 				22A6CA54259DE64E00FA81AD /* Login */,
 				22A6CA53259DE5FF00FA81AD /* Agent */,
 				2258651925A7956D0098EDB2 /* Supervisor */,
@@ -129,6 +128,7 @@
 				22A6CA45259DDEE000FA81AD /* Assignment.swift */,
 				2258652025A796890098EDB2 /* News.swift */,
 				22A6CA6F259DF47500FA81AD /* FamilyLoader.swift */,
+				224B4ECF25D450B8008CEF02 /* Score.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -269,7 +269,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				226BB22225ACCDAB002CF72A /* ScoreScreen.swift in Sources */,
 				22A6CA46259DDEE000FA81AD /* Assignment.swift in Sources */,
 				2230107625A8E1F30073BFB1 /* FamilyGrid.swift in Sources */,
 				2258652125A796890098EDB2 /* News.swift in Sources */,
@@ -282,6 +281,7 @@
 				2230107225A8E10C0073BFB1 /* LoginScreenHeader.swift in Sources */,
 				2258652525A796940098EDB2 /* NewsHandler.swift in Sources */,
 				22A826FF259CD95C004959AC /* ContentView.swift in Sources */,
+				224B4ED025D450B8008CEF02 /* Score.swift in Sources */,
 				22A826FD259CD95C004959AC /* TarefasFlixApp.swift in Sources */,
 				22A6CA58259DE9B400FA81AD /* PersonImage.swift in Sources */,
 				224F16FF25CC7019006F73D2 /* AgentScreen.swift in Sources */,
