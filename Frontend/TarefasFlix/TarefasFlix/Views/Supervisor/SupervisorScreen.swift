@@ -169,101 +169,92 @@ struct SupervisorScreen: View {
                     if showScoreScreen == false {
                         // List
                         if dataHasLoaded {
-                            ScrollView {
-                                Spacer()
-                                    .frame(height: 135)
-                                ForEach(filteredNews) { news in
-                                    Menu {
-                                        if news.message == "Houve reclamação!" {
-                                            Button {
-                                                self.currentNews = news.id
-                                                self.currentAssignment = news.assignment_id
-                                                reload2 = !reload2
-                                            } label: {
-                                                Text("Manter Tarefa")
-                                                Image(systemName: "hand.thumbsup")
-                                            }
-                                            Button {
-                                                self.currentNews = news.id
-                                                self.currentAssignment = news.assignment_id
-                                                reload3 = !reload3
-                                            } label: {
-                                                Text("Retirar Tarefa")
-                                                Image(systemName: "hand.thumbsdown")
-                                            }
-                                        }
-                                        else if news.status != "visto" {
-                                            Button {
-                                                self.currentNews = news.id
-                                                reload4 = !reload4
-                                            } label: {
-                                                Text("Marcar como visto")
-                                                Image(systemName: "checkmark")
-                                            }
-                                        }
-                                    } label: {
-                                        VStack {
+                            if filteredNews.count == 0 {
+                                Text("Não tens notícias!")
+                            }
+                            else {
+                                ScrollView {
+                                    Spacer()
+                                        .frame(height: 135)
+                                    ForEach(filteredNews) { news in
+                                        Menu {
                                             if news.message == "Houve reclamação!" {
-                                                Text(news.message)
-                                                    .font(.title2)
-                                                    .fontWeight(.semibold)
-                                                    .foregroundColor(Color(.sRGB, red: 200/255, green: 0/255, blue: 0/255))
-                                            }
-                                            else {
-                                                Text(news.message)
-                                                    .font(.title2)
-                                                    .fontWeight(.semibold)
-                                                    .foregroundColor(Color(.sRGB, red: 0/255, green: 100/255, blue: 255/255))
-                                            }
-                                            Divider()
-                                            VStack {
-                                                Text("\(news.task)")
-                                                    .font(.title3)
-                                                Spacer()
-                                                HStack {
-                                                    Text("Por:")
-                                                        .fontWeight(.light)
-                                                    Text("\(news.agent)")
+                                                Button {
+                                                    self.currentNews = news.id
+                                                    self.currentAssignment = news.assignment_id
+                                                    reload2 = !reload2
+                                                } label: {
+                                                    Text("Manter Tarefa")
+                                                    Image(systemName: "hand.thumbsup")
                                                 }
-                                                Spacer()
-                                                Text("\(news.news_date)")
+                                                Button {
+                                                    self.currentNews = news.id
+                                                    self.currentAssignment = news.assignment_id
+                                                    reload3 = !reload3
+                                                } label: {
+                                                    Text("Retirar Tarefa")
+                                                    Image(systemName: "hand.thumbsdown")
+                                                }
                                             }
-                                            .font(.body)
-                                            .foregroundColor(.black)
+                                            else if news.status != "visto" {
+                                                Button {
+                                                    self.currentNews = news.id
+                                                    reload4 = !reload4
+                                                } label: {
+                                                    Text("Marcar como visto")
+                                                    Image(systemName: "checkmark")
+                                                }
+                                            }
+                                        } label: {
+                                            VStack {
+                                                if news.message == "Houve reclamação!" {
+                                                    Text(news.message)
+                                                        .font(.title2)
+                                                        .fontWeight(.semibold)
+                                                        .foregroundColor(Color(.sRGB, red: 200/255, green: 0/255, blue: 0/255))
+                                                }
+                                                else {
+                                                    Text(news.message)
+                                                        .font(.title2)
+                                                        .fontWeight(.semibold)
+                                                        .foregroundColor(Color(.sRGB, red: 0/255, green: 100/255, blue: 255/255))
+                                                }
+                                                Divider()
+                                                VStack {
+                                                    Text("\(news.task)")
+                                                        .font(.title3)
+                                                    Spacer()
+                                                    HStack {
+                                                        Text("Por:")
+                                                            .fontWeight(.light)
+                                                        Text("\(news.agent)")
+                                                    }
+                                                    Spacer()
+                                                    Text("\(news.news_date)")
+                                                }
+                                                .font(.body)
+                                                .foregroundColor(.black)
+                                            }
+                                            .padding()
+                                            .cornerRadius(20)
+                                            .overlay(
+                                                RoundedRectangle(cornerRadius: 20)
+                                                    .stroke(Color(.sRGB, red: 200/255, green: 200/255, blue: 200/255, opacity: 0.5), lineWidth: 1)
+                                                    .shadow(radius: 3)
+                                            )
+                                            .padding([.leading, .bottom, .trailing])
                                         }
-                                        .padding()
-                                        .cornerRadius(20)
-                                        .overlay(
-                                            RoundedRectangle(cornerRadius: 20)
-                                                .stroke(Color(.sRGB, red: 200/255, green: 200/255, blue: 200/255, opacity: 0.5), lineWidth: 1)
-                                                .shadow(radius: 3)
-                                        )
-                                        .padding([.leading, .bottom, .trailing])
                                     }
                                 }
+                                .padding([.leading, .trailing])
                             }
-                            .padding([.leading, .trailing])
                         }
                         else {
                             Text("A carregar notícias...")
                         }
                     }
                     else {
-                        ScrollView {
-                            Spacer()
-                                .frame(height: 130)
-                            ForEach(handler.scores){ score in
-                                HStack {
-                                    PersonImage(name: score.id, width: 50, height: 60)
-                                        .padding()
-                                    Spacer()
-                                        .frame(width: 50)
-                                    Text("\(score.score)")
-                                        .font(.largeTitle)
-                                        .fontWeight(.medium)
-                                }
-                            }
-                        }
+                        ScoreScreen()
                     }
                     VStack {
                         HStack {
@@ -392,20 +383,21 @@ struct SupervisorScreen: View {
             dataHasLoaded = false
             UserDefaults.standard.set(self.handler.supervisor, forKey: "person")
             self.handler.load()
-            DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+            DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
                 dataHasLoaded = true
             }
         }
         .onChange(of: reload1, perform: { value in
             dataHasLoaded = false
             self.handler.load()
-            DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+            DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
                 dataHasLoaded = true
             }
         })
         .onChange(of: reload2, perform: { value in
             dataHasLoaded = false
             self.handler.forceAssignment(news_id: currentNews, assignment_id: currentAssignment)
+            print("Current news: \(currentNews), currentAssignment: \(currentAssignment) ")
             self.handler.load()
             DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
                 dataHasLoaded = true
@@ -422,6 +414,7 @@ struct SupervisorScreen: View {
         .onChange(of: reload4, perform: { value in
             dataHasLoaded = false
             self.handler.checkNews(currentNews)
+            print(currentNews)
             self.handler.load()
             DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
                 dataHasLoaded = true

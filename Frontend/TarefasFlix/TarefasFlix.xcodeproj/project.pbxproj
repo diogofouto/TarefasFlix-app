@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2222AA0A25D57D0C00C2F2E8 /* ScoreScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2222AA0925D57D0C00C2F2E8 /* ScoreScreen.swift */; };
 		2230107225A8E10C0073BFB1 /* LoginScreenHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2230107125A8E10C0073BFB1 /* LoginScreenHeader.swift */; };
 		2230107625A8E1F30073BFB1 /* FamilyGrid.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2230107525A8E1F30073BFB1 /* FamilyGrid.swift */; };
 		224B4ED025D450B8008CEF02 /* Score.swift in Sources */ = {isa = PBXBuildFile; fileRef = 224B4ECF25D450B8008CEF02 /* Score.swift */; };
@@ -44,6 +45,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		2222AA0925D57D0C00C2F2E8 /* ScoreScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScoreScreen.swift; sourceTree = "<group>"; };
 		2230107125A8E10C0073BFB1 /* LoginScreenHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginScreenHeader.swift; sourceTree = "<group>"; };
 		2230107525A8E1F30073BFB1 /* FamilyGrid.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FamilyGrid.swift; sourceTree = "<group>"; };
 		224B4ECF25D450B8008CEF02 /* Score.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Score.swift; sourceTree = "<group>"; };
@@ -113,6 +115,7 @@
 			isa = PBXGroup;
 			children = (
 				22A826FE259CD95C004959AC /* ContentView.swift */,
+				2222AA0925D57D0C00C2F2E8 /* ScoreScreen.swift */,
 				22A6CA54259DE64E00FA81AD /* Login */,
 				22A6CA53259DE5FF00FA81AD /* Agent */,
 				2258651925A7956D0098EDB2 /* Supervisor */,
@@ -271,6 +274,7 @@
 			files = (
 				22A6CA46259DDEE000FA81AD /* Assignment.swift in Sources */,
 				2230107625A8E1F30073BFB1 /* FamilyGrid.swift in Sources */,
+				2222AA0A25D57D0C00C2F2E8 /* ScoreScreen.swift in Sources */,
 				2258652125A796890098EDB2 /* News.swift in Sources */,
 				2273D88025A2320F0002D0AA /* AssignmentsHandler.swift in Sources */,
 				22A6CA61259DF1A900FA81AD /* PersonThumbnail.swift in Sources */,

@@ -105,9 +105,9 @@ returns trigger as
 $$
 begin
   -- Se a tarefa estiver feita, incrementar score do agent
-  if new.status = 'feito' then
+  if new.status = 'feito' and old.status != 'feito' then
     insert into news (assignment_id, agent, task, supervisor, message) values (new.id, new.agent, new.task, new.supervisor, 'Tarefa concluída!');
-  elsif new.status = 'em consideração' then
+  elsif new.status = 'em consideração' and old.status = 'por fazer' then
     insert into news (assignment_id, agent, task, supervisor, message) values (new.id, new.agent, new.task, new.supervisor, 'Houve reclamação!');
   end if;
   return new;

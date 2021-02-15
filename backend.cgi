@@ -280,6 +280,7 @@ def checkNews():
 		return jsonify({"status": "nok"})
 
 	finally:
+		dbConn.commit()
 		cursor.close()
 		dbConn.close()
 
@@ -322,6 +323,7 @@ def forceAssignment():
 		return jsonify({"status": "nok"})
 
 	finally:
+		dbConn.commit()
 		cursor.close()
 		dbConn.close()
 
@@ -364,6 +366,7 @@ def forgetAssignment():
 		return jsonify({"status": "nok"})
 
 	finally:
+		dbConn.commit()
 		cursor.close()
 		dbConn.close()
 

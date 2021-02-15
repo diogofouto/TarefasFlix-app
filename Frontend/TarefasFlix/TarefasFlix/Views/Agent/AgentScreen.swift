@@ -16,7 +16,6 @@ struct AgentScreen: View {
     @State private var reload2: Bool = false
     @State private var reload3: Bool = false
     @State private var dataHasLoaded: Bool = false
-    @State private var scoreHasLoaded: Bool = false
     
     @State private var currentAssignment: Int = 0
     
@@ -106,26 +105,8 @@ struct AgentScreen: View {
                     }
                 }
                 else {
-                    if scoreHasLoaded {
-                        ScrollView {
-                            Spacer()
-                                .frame(height: 130)
-                            ForEach(handler.scores){ score in
-                                HStack {
-                                    PersonImage(name: score.id, width: 50, height: 60)
-                                        .padding()
-                                    Spacer()
-                                        .frame(width: 50)
-                                    Text("\(score.score)")
-                                        .font(.largeTitle)
-                                        .fontWeight(.medium)
-                                }
-                            }
-                        }
-                    }
-                    else {
-                        Text("A carregar pontuação...")
-                    }
+                    ScoreScreen()
+                        .offset(y: -50)
                 }
                 VStack {
                     HStack {
@@ -241,19 +222,16 @@ struct AgentScreen: View {
         .navigationBarHidden(true)
         .onAppear() {
             dataHasLoaded = false
-            scoreHasLoaded = false
             UserDefaults.standard.set(self.handler.agent, forKey: "person")
             self.handler.load()
-            self.handler.getScores()
-            DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+            DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
                 dataHasLoaded = true
-                scoreHasLoaded = true
             }
         }
         .onChange(of: reload1, perform: { value in
             dataHasLoaded = false
             self.handler.load()
-            DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+            DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
                 dataHasLoaded = true
             }
         })

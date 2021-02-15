@@ -12,6 +12,7 @@ import UIKit
 public class AssignmentsHandler: ObservableObject {
     var agent: String
     var dataHasLoaded = false
+    var scoreHasLoaded = false
     @Published var assignments = [Assignment]()
     @Published var scores = [Score]()
     
@@ -65,6 +66,7 @@ public class AssignmentsHandler: ObservableObject {
     }
     
     func getScores(){
+        self.scoreHasLoaded = false
         // Prepare POST request
         guard let url = URL(string: "http://web2.ist.utl.pt/ist193705/TarefasFlix/backend.cgi/listScores") else {
             print("Error: invalid API endpoint")
@@ -86,6 +88,7 @@ public class AssignmentsHandler: ObservableObject {
                     let response = try JSONDecoder().decode([Score].self, from: d)
                     DispatchQueue.main.async {
                         self.scores = response
+                        self.scoreHasLoaded = true
                     }
                 } else {
                     print("No Data in response")

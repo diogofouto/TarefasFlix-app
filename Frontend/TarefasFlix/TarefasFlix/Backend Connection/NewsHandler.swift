@@ -64,7 +64,6 @@ public class NewsHandler: ObservableObject {
     }
     
     func checkNews(_ id: Int){
-        self.dataHasLoaded = false
         // Prepare POST request
         guard let url = URL(string: "http://web2.ist.utl.pt/ist193705/TarefasFlix/backend.cgi/checkNews") else {
             print("Error: invalid API endpoint")
@@ -97,7 +96,6 @@ public class NewsHandler: ObservableObject {
                     let response = try JSONDecoder().decode([News].self, from: d)
                     DispatchQueue.main.async {
                         self.news = response
-                        self.dataHasLoaded = true
                     }
                 } else {
                     print("No Data in response")
@@ -109,7 +107,6 @@ public class NewsHandler: ObservableObject {
     }
     
     func forceAssignment(news_id: Int, assignment_id: Int){
-        self.dataHasLoaded = false
         // Prepare POST request
         guard let url = URL(string: "http://web2.ist.utl.pt/ist193705/TarefasFlix/backend.cgi/forceAssignment") else {
             print("Error: invalid API endpoint")
