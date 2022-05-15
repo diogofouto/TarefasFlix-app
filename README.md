@@ -1,6 +1,6 @@
 # TarefasFlix-app
 
-<img src="https://drive.google.com/file/d/1xSqvUGGfuNjB2md4hkSCSl99BcoxWFGT/view?usp=sharing" height="60" width="60" >
+<img src="https://github.com/diogofouto/TarefasFlix-app/blob/master/Frontend/Resources/TarefasFlix%20Logo.png" height="60" width="60" >
 
 This is a household-chores app that I made to help my family coordinate around the house. You see, we are a family of eight...
 
